@@ -2,25 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from './Modal';
 
-const ProductCard = ({ model, image, price, storage, colors }) => (
+const ProductCard = ({ model, image, price, storage, processor }) => (
   <div className="bg-[#1d1d1f] rounded-2xl p-4 text-center">
     <div className="aspect-square mb-4 flex items-center justify-center">
       <img src={image} alt={model} className="w-40 h-auto" />
     </div>
     <h2 className="text-lg font-bold mb-1">{model}</h2>
     <div className="text-sm text-gray-400 mb-2">
+      <div>{processor}</div>
       {storage.map((option, index) => (
         <span key={index} className="mr-2">{option}</span>
-      ))}
-    </div>
-    <div className="flex justify-center gap-1 mb-3">
-      {colors.map((color, index) => (
-        <div
-          key={index}
-          className="w-4 h-4 rounded-full"
-          style={{ backgroundColor: color }}
-          title={color}
-        />
       ))}
     </div>
     <p className="text-sm text-gray-400 mb-3">от {price} ₸</p>
@@ -45,15 +36,14 @@ const FeatureIcon = ({ icon, title, description }) => (
   </div>
 );
 
-const StoreIPhoneModal = ({ isOpen, onClose }) => {
-  // make get request to get products from backend
+const StoreMacModal = ({ isOpen, onClose }) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=iphone');
+    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=mac');
     console.log(response.data);
     setProducts(response.data);
   };
@@ -63,30 +53,29 @@ const StoreIPhoneModal = ({ isOpen, onClose }) => {
     image: product.image,
     price: product.price,
     storage: product.storage,
-    colors: product.colors.map(color => color.hex)
+    processor: product.processor
   }));
 
- 
   const features = [
     {
-      icon: "/icons/ios.svg",
-      title: "iOS 17",
-      description: "Последняя версия операционной системы"
+      icon: "/icons/chip.svg",
+      title: "Apple Silicon",
+      description: "Революционные процессоры Mac"
     },
     {
       icon: "/icons/compare.svg",
       title: "Сравнение",
-      description: "Сравните модели iPhone"
+      description: "Сравните модели Mac"
     },
     {
-      icon: "/icons/airpods.svg",
-      title: "AirPods",
-      description: "Идеальная пара для вашего iPhone"
+      icon: "/icons/macos.svg",
+      title: "macOS",
+      description: "Создан для Mac"
     },
     {
       icon: "/icons/accessories.svg",
       title: "Аксессуары",
-      description: "Чехлы, зарядки и другие аксессуары"
+      description: "Мыши, клавиатуры и другие аксессуары"
     },
     {
       icon: "/icons/support.svg",
@@ -103,33 +92,27 @@ const StoreIPhoneModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="w-full">
-        {/* Hero Section */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2">iPhone</h1>
-          <p className="text-gray-400">Купить iPhone в iRepublic</p>
+          <h1 className="text-4xl font-bold mb-2">Mac</h1>
+          <p className="text-gray-400">Купить Mac в iRepublic</p>
         </div>
 
-        {/* <pre>{JSON.stringify(products, null, 2)}</pre> */}
-
-        Products Grid
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {productsView.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
         </div>
 
-        {/* Trade In Banner */}
         <div className="bg-[#1d1d1f] rounded-2xl p-6 text-center my-8">
           <h2 className="text-2xl font-bold mb-2">Trade-in</h2>
           <p className="text-gray-400 mb-4">
-            Обменяйте свой старый iPhone и получите скидку на новый
+            Обменяйте свой старый Mac и получите скидку на новый
           </p>
           <a href="/trade-in" className="text-blue-500 hover:underline">
             Узнать подробнее →
           </a>
         </div>
 
-        {/* Features Section */}
         <div className="border-t border-[#424245] pt-8 mt-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {features.map((feature, index) => (
@@ -138,13 +121,12 @@ const StoreIPhoneModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Quick Links */}
         <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
           <a href="#" className="text-blue-500 hover:underline">Сравнить модели</a>
           <span className="text-gray-400">•</span>
           <a href="#" className="text-blue-500 hover:underline">Руководство пользователя</a>
           <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">iOS 18</a>
+          <a href="#" className="text-blue-500 hover:underline">macOS</a>
           <span className="text-gray-400">•</span>
           <a href="#" className="text-blue-500 hover:underline">Аксессуары</a>
           <span className="text-gray-400">•</span>
@@ -155,4 +137,4 @@ const StoreIPhoneModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default StoreIPhoneModal; 
+export default StoreMacModal; 
