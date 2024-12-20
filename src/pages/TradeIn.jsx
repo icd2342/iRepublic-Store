@@ -10,7 +10,7 @@ const TradeIn = () => {
           Обменяйте свое устройство на новое с доплатой.
         </p>
         <a href="#" className="text-lg md:text-xl text-blue-500 hover:underline mt-4 inline-block">
-          Узнать стоимость вашего устройства →
+          Узнать стоимость вашего устройства  →
         </a>
       </div>
 
