@@ -6,13 +6,74 @@ import StoreWatchModal from './StoreWatchModal';
 import StoreAirPodModal from './StoreAirPodModal';
 import StoreAccessoriesModal from './StoreAccessoriesModal';
 
-const StoreModal = ({ isOpen, onClose }) => {
-  const [isIPhoneModalOpen, setIsIPhoneModalOpen] = useState(false);
-  const [isMacModalOpen, setIsMacModalOpen] = useState(false);
-  const [isiPadModalOpen, setIsiPadModalOpen] = useState(false);
-  const [isWatchModalOpen, setIsWatchModalOpen] = useState(false);
-  const [isAirPodsModalOpen, setIsAirPodsModalOpen] = useState(false);
-  const [isAccessoriesModalOpen, setIsAccessoriesModalOpen] = useState(false);
+export const ProductType = {
+  STORE: 'STORE', // Default store view
+  IPHONE: 'IPHONE',
+  MAC: 'MAC',
+  IPAD: 'IPAD',
+  WATCH: 'WATCH',
+  AIRPODS: 'AIRPODS',
+  ACCESSORIES: 'ACCESSORIES'
+};
+
+export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE }) => {
+  const [currentView, setCurrentView] = useState(initialProduct);
+  const [isIPhoneModalOpen, setIsIPhoneModalOpen] = useState(initialProduct === ProductType.IPHONE);
+  const [isMacModalOpen, setIsMacModalOpen] = useState(initialProduct === ProductType.MAC);
+  const [isiPadModalOpen, setIsiPadModalOpen] = useState(initialProduct === ProductType.IPAD);
+  const [isWatchModalOpen, setIsWatchModalOpen] = useState(initialProduct === ProductType.WATCH);
+  const [isAirPodsModalOpen, setIsAirPodsModalOpen] = useState(initialProduct === ProductType.AIRPODS);
+  const [isAccessoriesModalOpen, setIsAccessoriesModalOpen] = useState(initialProduct === ProductType.ACCESSORIES);
+
+  // Close all modals and return to store view
+  const closeAllModals = () => {
+    setCurrentView(ProductType.STORE);
+    setIsIPhoneModalOpen(false);
+    setIsMacModalOpen(false);
+    setIsiPadModalOpen(false);
+    setIsWatchModalOpen(false);
+    setIsAirPodsModalOpen(false);
+    setIsAccessoriesModalOpen(false);
+  };
+
+  // Open specific modal
+  const openModal = (productType) => {
+    if (productType === ProductType.STORE) {
+      closeAllModals();
+      return;
+    }
+
+    setCurrentView(productType);
+    closeAllModals();
+    switch (productType) {
+      case ProductType.IPHONE:
+        setIsIPhoneModalOpen(true);
+        break;
+      case ProductType.MAC:
+        setIsMacModalOpen(true);
+        break;
+      case ProductType.IPAD:
+        setIsiPadModalOpen(true);
+        break;
+      case ProductType.WATCH:
+        setIsWatchModalOpen(true);
+        break;
+      case ProductType.AIRPODS:
+        setIsAirPodsModalOpen(true);
+        break;
+      case ProductType.ACCESSORIES:
+        setIsAccessoriesModalOpen(true);
+        break;
+      default:
+        break;
+    }
+  };
+
+  // Handle modal close events
+  const handleModalClose = () => {
+    closeAllModals();
+    if (onClose) onClose();
+  };
 
   return (
     <>
@@ -23,7 +84,7 @@ const StoreModal = ({ isOpen, onClose }) => {
             <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Новинки</a></li>
             <li>
               <button 
-                onClick={() => setIsIPhoneModalOpen(true)} 
+                onClick={() => openModal(ProductType.IPHONE)} 
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 iPhone
@@ -31,7 +92,7 @@ const StoreModal = ({ isOpen, onClose }) => {
             </li>
             <li>
               <button 
-                onClick={() => setIsMacModalOpen(true)} 
+                onClick={() => openModal(ProductType.MAC)} 
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 Mac
@@ -39,7 +100,7 @@ const StoreModal = ({ isOpen, onClose }) => {
             </li>
             <li>
               <button 
-                onClick={() => setIsiPadModalOpen(true)} 
+                onClick={() => openModal(ProductType.IPAD)} 
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 iPad
@@ -47,7 +108,7 @@ const StoreModal = ({ isOpen, onClose }) => {
             </li>
             <li>
               <button 
-                onClick={() => setIsWatchModalOpen(true)} 
+                onClick={() => openModal(ProductType.WATCH)} 
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 Apple Watch
@@ -55,7 +116,7 @@ const StoreModal = ({ isOpen, onClose }) => {
             </li>
             <li>
               <button 
-                onClick={() => setIsAirPodsModalOpen(true)} 
+                onClick={() => openModal(ProductType.AIRPODS)} 
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 AirPods
@@ -63,7 +124,7 @@ const StoreModal = ({ isOpen, onClose }) => {
             </li>
             <li>
               <button 
-                onClick={() => setIsAccessoriesModalOpen(true)} 
+                onClick={() => openModal(ProductType.ACCESSORIES)} 
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 Аксессуары
@@ -100,27 +161,27 @@ const StoreModal = ({ isOpen, onClose }) => {
 
       <StoreIPhoneModal 
         isOpen={isIPhoneModalOpen} 
-        onClose={() => setIsIPhoneModalOpen(false)} 
+        onClose={handleModalClose} 
       />
       <StoreMacModal 
         isOpen={isMacModalOpen} 
-        onClose={() => setIsMacModalOpen(false)} 
+        onClose={handleModalClose} 
       />
       <StoreWatchModal 
         isOpen={isWatchModalOpen} 
-        onClose={() => setIsWatchModalOpen(false)} 
+        onClose={handleModalClose} 
       />
       <StoreAirPodModal 
         isOpen={isAirPodsModalOpen} 
-        onClose={() => setIsAirPodsModalOpen(false)} 
+        onClose={handleModalClose} 
       />
       <StoreIPadModal 
         isOpen={isiPadModalOpen} 
-        onClose={() => setIsiPadModalOpen(false)} 
+        onClose={handleModalClose} 
       />
       <StoreAccessoriesModal 
         isOpen={isAccessoriesModalOpen} 
-        onClose={() => setIsAccessoriesModalOpen(false)} 
+        onClose={handleModalClose} 
       />
       
     </>

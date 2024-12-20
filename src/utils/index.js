@@ -30,6 +30,14 @@ import chip from "/assets/images/chip.jpeg";
 import frame from "/assets/images/frame.png";
 import iRepLogo from "/images/irepLogo.png";
 
+import store from "/assets/images/store.png";
+import mac from "/assets/images/mac.png";
+import ipad from "/assets/images/ipad.png";
+import iphone from "/assets/images/iphone.png";
+import airpods from "/assets/images/airpods.png";
+import appleWatch from "/assets/images/watch.png";
+import tradeIn from "/assets/images/tradein.png";
+
 export const heroVideo = hmv;
 export const smallHeroVideo = smallmv;
 export const highlightFirstVideo = highlightFirstmv;
@@ -57,3 +65,11 @@ export const explore2Img = explore2;
 export const chipImg = chip;
 export const frameImg = frame;
 export const iRepLogoImg = iRepLogo;
+
+export const storeImg = store;
+export const macImg = mac;
+export const ipadImg = ipad;
+export const iphoneImg = iphone;
+export const airpodsImg = airpods;
+export const appleWatchImg = appleWatch;
+export const tradeInImg = tradeIn;
