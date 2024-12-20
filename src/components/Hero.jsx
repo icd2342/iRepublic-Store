@@ -4,12 +4,15 @@ import { heroVideo, smallHeroVideo } from '../utils';
 import { useEffect, useState } from 'react';
 
 const Hero = () => {
+  const [screenType, setScreenType] = useState(window.innerWidth < 760 ? 'small' : 'large')
   const [videoSrc, setVideoSrc] = useState(window.innerWidth < 760 ? smallHeroVideo : heroVideo)
 
   const handleVideoSrcSet = () => {
     if(window.innerWidth < 760) {
+      setScreenType('small')
       setVideoSrc(smallHeroVideo)
     } else {
+      setScreenType('large')
       setVideoSrc(heroVideo)
     }
   }
@@ -31,7 +34,13 @@ const Hero = () => {
     <section className="w-full min-h-screen bg-black relative pt-[60px]">
       <div className="h-full w-full flex-center flex-col">
         <div className="md:w-10/12 w-9/12">
-          <video className="pointer-events-none" autoPlay muted playsInline={true} key={videoSrc}>
+          <video 
+            className={screenType == 'small' ? 'pointer-events-none w-10/12 mx-auto' : ''}
+            autoPlay 
+            muted 
+            playsInline={true} 
+            key={videoSrc}
+          >
             <source src={videoSrc} type="video/mp4" />
           </video>
         </div>
