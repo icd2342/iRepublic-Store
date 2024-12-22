@@ -7,6 +7,13 @@ import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import TradeIn from './pages/TradeIn';
+import IPhonePage from './pages/IPhonePage';
+import MacPage from './pages/MacPage';
+import IPadPage from './pages/IPadPage';
+import WatchPage from './pages/WatchPage';
+import AirPodsPage from './pages/AirPodsPage';
+import NewPage from './pages/NewPage';
+import UsedPage from './pages/UsedPage';
 
 const App = () => {
   return (
@@ -25,6 +32,13 @@ const App = () => {
             </main>
           } />
           <Route path="/trade-in" element={<TradeIn />} />
+          <Route path="/iphone" element={<IPhonePage />} />
+          <Route path="/mac" element={<MacPage />} />
+          <Route path="/ipad" element={<IPadPage />} />
+          <Route path="/watch" element={<WatchPage />} />
+          <Route path="/airpods" element={<AirPodsPage />} />
+          <Route path="/new" element={<NewPage />} />
+          <Route path="/used" element={<UsedPage />} />
         </Routes>
       </div>
     </div>

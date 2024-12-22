@@ -1,5 +1,6 @@
 import React from 'react';
-import { appleImg } from '../utils';
+import { Link } from 'react-router-dom';
+import { iRepLogoImg } from '../utils';
 
 const MobileMenu = ({ isOpen, onClose }) => {
   return (
@@ -7,9 +8,9 @@ const MobileMenu = ({ isOpen, onClose }) => {
       <div className="h-full overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between px-6 h-[44px] border-b border-[#424245]">
-          <a href="/" className="opacity-80 hover:opacity-100 transition-opacity">
-            <img src={appleImg} alt="Apple" className="w-[18px] h-[18px]" />
-          </a>
+          <Link to="/" className="opacity-80 hover:opacity-100 transition-opacity" onClick={onClose}>
+            <img src={iRepLogoImg} alt="iRepublic" className="w-[18px] h-[18px]" />
+          </Link>
           <button 
             onClick={onClose}
             className="text-[#424245] hover:text-white"
@@ -24,39 +25,85 @@ const MobileMenu = ({ isOpen, onClose }) => {
         <nav className="mt-2">
           <ul className="divide-y divide-[#424245]">
             <li>
-              <a href="#" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 Store
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/new" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
+                Новые
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/used" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
+                Б/У
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/mac" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 Mac
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/ipad" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 iPad
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/iphone" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 iPhone
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/watch" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 Watch
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/airpods" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 AirPods
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/trade-in" className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors">
+              <Link 
+                to="/trade-in" 
+                className="flex items-center px-6 h-[44px] text-xl text-white hover:text-[#2997FF] transition-colors"
+                onClick={onClose}
+              >
                 Trade In
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
