@@ -1,37 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from './Modal';
+import settings from '../../settings.json';
 
-const ProductCard = ({ model, image, price, size, colors }) => (
-  <div className="bg-[#1d1d1f] rounded-2xl p-4 text-center">
-    <div className="aspect-square mb-4 flex items-center justify-center">
-      <img src={image} alt={model} className="w-40 h-auto" />
+const ProductCard = ({ model, image, price, size, colorData = [] }) => {
+  const [selectedSize, setSelectedSize] = useState(size || '');
+  const [selectedColor, setSelectedColor] = useState(colorData[0] || null);
+
+  // Filter out duplicate colors based on hex value
+  const uniqueColors = colorData.filter((color, index, self) =>
+    index === self.findIndex((c) => c.hex === color.hex)
+  );
+
+  const handleBuy = () => {
+    const message = `Здравствуйте! Интересует ${model} ${selectedSize}мм ${selectedColor?.name || ''} за ${price} ${settings.currency}`;
+    const encodedMessage = encodeURIComponent(message);
+    console.log(encodedMessage);  
+    const whatsappUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <div className="bg-[#1d1d1f] rounded-2xl p-4 text-center">
+      <div className="aspect-square mb-4 flex items-center justify-center">
+        <img src={image} alt={model} className="w-40 h-auto" />
+      </div>
+      <h2 className="text-lg font-bold mb-1">{model}</h2>
+      <div className="text-sm text-gray-400 mb-2 flex flex-wrap gap-2 justify-center">
+        {size && (
+          <button
+            className={`px-3 py-1 rounded-full ${
+              selectedSize === size
+                ? 'bg-gray-500 text-white hover:bg-gray-600'
+                : 'bg-blue-500 text-white'
+            }`}
+          >
+            {size} мм
+          </button>
+        )}
+      </div>
+      <div className="flex flex-col items-center gap-2 mb-3">
+        <div className="flex justify-center gap-1">
+          {uniqueColors.map((color) => (
+            <button
+              key={color.hex}
+              className={`w-4 h-4 rounded-full transition-transform ${
+                selectedColor?.hex === color.hex
+                  ? 'ring-2 ring-offset-2 ring-blue-500 ring-offset-[#1d1d1f] scale-110'
+                  : 'hover:scale-110'
+              }`}
+              style={{ backgroundColor: color.hex }}
+              onClick={() => setSelectedColor(color)}
+              title={color.name}
+            />
+          ))}
+        </div>
+        <span className="text-sm text-gray-400">{selectedColor?.name}</span>
+      </div>
+      <p className="text-sm text-gray-400 mb-3">от {price} ₸</p>
+      <div className="space-y-2">
+        <button 
+          onClick={handleBuy}
+          className="w-full border border-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
+        >
+          Купить
+        </button>
+      </div>
     </div>
-    <h2 className="text-lg font-bold mb-1">{model}</h2>
-    <div className="text-sm text-gray-400 mb-2">
-      {size && <span className="mr-2">{size} мм</span>}
-    </div>
-    <div className="flex justify-center gap-1 mb-3">
-      {colors.map((color, index) => (
-        <div
-          key={index}
-          className="w-4 h-4 rounded-full"
-          style={{ backgroundColor: color }}
-          title={color}
-        />
-      ))}
-    </div>
-    <p className="text-sm text-gray-400 mb-3">от {price} ₸</p>
-    <div className="space-y-2">
-      <button className="w-full bg-blue-500 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors">
-        Купить
-      </button>
-      <button className="w-full border border-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors">
-        В рассрочку
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 const FeatureIcon = ({ icon, title, description }) => (
   <div className="text-center p-4">
@@ -60,7 +97,7 @@ const StoreWatchModal = ({ isOpen, onClose }) => {
     image: product.image,
     price: product.price,
     size: product.size,
-    colors: product.colors.map(color => color.hex)
+    colorData: product.colors
   }));
 
   const features = [
@@ -113,7 +150,7 @@ const StoreWatchModal = ({ isOpen, onClose }) => {
         <div className="bg-[#1d1d1f] rounded-2xl p-6 text-center my-8">
           <h2 className="text-2xl font-bold mb-2">Trade-in</h2>
           <p className="text-gray-400 mb-4">
-            Обменяйте свои старые Apple Watch и получите скидку на новые
+            Обменяйте свои старые Apple Watch и по��учите скидку на новые
           </p>
           <a href="/trade-in" className="text-blue-500 hover:underline">
             Узнать подробнее →

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from './Modal';
+import settings from '../../settings.json';
 
 const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
   const [selectedStorage, setSelectedStorage] = useState(storage[0]);
@@ -12,10 +13,10 @@ const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
   );
 
   const handleBuy = () => {
-    const message = `Здравствуйте! Интересует ${model} ${selectedStorage} ${selectedColor.name} за ${price} ₸`;
+    const message = `Здравствуйте! Интересует ${model} ${selectedStorage} ${selectedColor.name} за ${price} ${settings.currency}`;
     const encodedMessage = encodeURIComponent(message);
     console.log(encodedMessage);  
-    const whatsappUrl = `https://wa.me/77086282679?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -31,8 +32,8 @@ const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
             key={option}
             className={`px-3 py-1 rounded-full ${
               selectedStorage === option
-                ? 'bg-blue-500 text-white'
-                : 'bg-[#2a2a2b] hover:bg-[#3a3a3b]'
+                ? 'bg-gray-500 text-white hover:bg-gray-600'
+                : 'bg-blue-500 text-white'
             }`}
             onClick={() => setSelectedStorage(option)}
           >
