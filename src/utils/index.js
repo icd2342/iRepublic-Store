@@ -28,7 +28,7 @@ import explore1 from "/assets/images/explore1.jpg";
 import explore2 from "/assets/images/explore2.jpg";
 import chip from "/assets/images/chip.jpeg";
 import frame from "/assets/images/frame.png";
-import iRepLogo from "/images/irepLogo.png";
+import iRepLogo from "/images/irepLogo.ico";
 
 import store from "/assets/images/store.png";
 import mac from "/assets/images/mac.png";

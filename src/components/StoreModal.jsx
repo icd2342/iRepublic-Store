@@ -5,6 +5,8 @@ import StoreIPadModal from './StoreIPadModal';
 import StoreWatchModal from './StoreWatchModal';
 import StoreAirPodModal from './StoreAirPodModal';
 import StoreAccessoriesModal from './StoreAccessoriesModal';
+import StoreNewModal from './StoreNewModal';
+import StoreUsedModal from './StoreUsedModal';
 
 export const ProductType = {
   STORE: 'STORE', // Default store view
@@ -13,7 +15,9 @@ export const ProductType = {
   IPAD: 'IPAD',
   WATCH: 'WATCH',
   AIRPODS: 'AIRPODS',
-  ACCESSORIES: 'ACCESSORIES'
+  ACCESSORIES: 'ACCESSORIES',
+  NEW: 'NEW',
+  USED: 'USED'
 };
 
 export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE }) => {
@@ -24,6 +28,8 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
   const [isWatchModalOpen, setIsWatchModalOpen] = useState(initialProduct === ProductType.WATCH);
   const [isAirPodsModalOpen, setIsAirPodsModalOpen] = useState(initialProduct === ProductType.AIRPODS);
   const [isAccessoriesModalOpen, setIsAccessoriesModalOpen] = useState(initialProduct === ProductType.ACCESSORIES);
+  const [isNewModalOpen, setIsNewModalOpen] = useState(initialProduct === ProductType.NEW);
+  const [isUsedModalOpen, setIsUsedModalOpen] = useState(initialProduct === ProductType.USED);
 
   // Close all modals and return to store view
   const closeAllModals = () => {
@@ -34,6 +40,8 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
     setIsWatchModalOpen(false);
     setIsAirPodsModalOpen(false);
     setIsAccessoriesModalOpen(false);
+    setIsNewModalOpen(false);
+    setIsUsedModalOpen(false);
   };
 
   // Open specific modal
@@ -64,6 +72,12 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
       case ProductType.ACCESSORIES:
         setIsAccessoriesModalOpen(true);
         break;
+      case ProductType.NEW:
+        setIsNewModalOpen(true);
+        break;
+      case ProductType.USED:
+        setIsUsedModalOpen(true);
+        break;
       default:
         break;
     }
@@ -81,7 +95,22 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
         <div>
           <h3 className="text-gray-200 font-semibold mb-4">Магазин</h3>
           <ul className="space-y-3">
-            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Новинки</a></li>
+            <li>
+              <button 
+                onClick={() => openModal(ProductType.NEW)} 
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Новые
+              </button>
+            </li>
+            <li>
+              <button 
+                onClick={() => openModal(ProductType.USED)} 
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                Б/У
+              </button>
+            </li>
             <li>
               <button 
                 onClick={() => openModal(ProductType.IPHONE)} 
@@ -137,16 +166,8 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
           <h3 className="text-gray-200 font-semibold mb-4">Быстрые ссылки</h3>
           <ul className="space-y-3">
             <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Найти магазин</a></li>
-            {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Статус заказа</a></li> */}
             <li><a href="/trade-in" className="text-gray-400 hover:text-white transition-colors">Trade-in</a></li>
-            {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Рассрочка</a></li> */}
           </ul>
-
-          {/* <h3 className="text-gray-200 font-semibold mb-4 mt-8">Специальные предложения</h3>
-          <ul className="space-y-3">
-            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Trade-in</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Акции</a></li>
-          </ul> */}
         </div>
 
         <div>
@@ -154,7 +175,6 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
           <ul className="space-y-3">
             <li><a href="#" className="text-gray-400 hover:text-white transition-colors">О нас</a></li>
             <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Контакты</a></li>
-            {/* <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Адрес</a></li> */}
           </ul>
         </div>
       </div>
@@ -181,6 +201,14 @@ export const StoreModal = ({ isOpen, onClose, initialProduct = ProductType.STORE
       />
       <StoreAccessoriesModal 
         isOpen={isAccessoriesModalOpen} 
+        onClose={handleModalClose} 
+      />
+      <StoreNewModal 
+        isOpen={isNewModalOpen} 
+        onClose={handleModalClose} 
+      />
+      <StoreUsedModal 
+        isOpen={isUsedModalOpen} 
         onClose={handleModalClose} 
       />
       

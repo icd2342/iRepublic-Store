@@ -29,7 +29,9 @@ const Navbar = () => {
       'ipad': ProductType.IPAD,
       'watch': ProductType.WATCH,
       'airpods': ProductType.AIRPODS,
-      'accessories': ProductType.ACCESSORIES
+      'accessories': ProductType.ACCESSORIES,
+      'new': ProductType.NEW,
+      'used': ProductType.USED
     };
 
     const productType = modalTypeMap[modalName];
@@ -62,6 +64,26 @@ const Navbar = () => {
                 >
                   <img src={storeImg} alt="Store" className="w-0 h-0 mb-1 group-hover:w-[32px] group-hover:h-[32px] transition-all duration-100" />
                   Store
+                </button>
+              </li>
+              <li className="flex flex-col items-center">
+                <button 
+                  onClick={() => handleModalOpen('new')} 
+                  className={`text-[#f5f5f7] text-[12px] font-medium transition-opacity
+                    ${activeModal === 'new' ? 'opacity-100' : 'opacity-80 hover:opacity-100'}`}
+                >
+                  <img src={storeImg} alt="New" className="w-0 h-0 mb-1 group-hover:w-[32px] group-hover:h-[32px] transition-all duration-100" />
+                  Новые
+                </button>
+              </li>
+              <li className="flex flex-col items-center">
+                <button 
+                  onClick={() => handleModalOpen('used')} 
+                  className={`text-[#f5f5f7] text-[12px] font-medium transition-opacity
+                    ${activeModal === 'used' ? 'opacity-100' : 'opacity-80 hover:opacity-100'}`}
+                >
+                  <img src={storeImg} alt="Used" className="w-0 h-0 mb-1 group-hover:w-[32px] group-hover:h-[32px] transition-all duration-100" />
+                  Б/У
                 </button>
               </li>
               <li className="flex flex-col items-center">

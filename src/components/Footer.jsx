@@ -9,10 +9,10 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-200 font-semibold mb-4">Адреса</h3>
             <ul className="space-y-3">
-              <li className="text-gray-400">ул. Пушкина 10, Москва</li>
-              <li className="text-gray-400">ул. Ленина 25, Санкт-Петербург</li>
-              <li className="text-gray-400">пр. Мира 15, Казань</li>
-              <li className="text-gray-400">ул. Гагарина 8, Новосибирск</li>
+              <li className="text-gray-400">ул. Жарбосынова 85, Атырау (10:00-21:00)</li>
+              <li className="text-gray-400">ул. Сатпаева 17, ТРК Атырау (10:00-21:00)</li>
+              <li className="text-gray-400">16 мкр, 85 дом, Актау (10:00-21:00)</li>
+              <li className="text-gray-400">ТРЦ Форум, Молдагалиева 18, Орал (10:00-20:00)</li>
             </ul>
           </div>
 
@@ -21,30 +21,25 @@ const Footer = () => {
             <h3 className="text-gray-200 font-semibold mb-4">Телефоны</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+74951234567" className="text-gray-400 hover:text-white transition-colors">
-                  +7 (495) 123-45-67
+                <a href="tel:+77477600606" className="text-gray-400 hover:text-white transition-colors">
+                  +7 (747) 760-06-06 (Атырау)
                 </a>
               </li>
               <li>
-                <a href="tel:+78121234567" className="text-gray-400 hover:text-white transition-colors">
-                  +7 (812) 123-45-67
+                <a href="tel:+77477607700" className="text-gray-400 hover:text-white transition-colors">
+                  +7 (747) 760-77-00 (Орал)
                 </a>
               </li>
               <li>
-                <a href="tel:+78431234567" className="text-gray-400 hover:text-white transition-colors">
-                  +7 (843) 123-45-67
-                </a>
-              </li>
-              <li>
-                <a href="tel:+73831234567" className="text-gray-400 hover:text-white transition-colors">
-                  +7 (383) 123-45-67
+                <a href="tel:+77477601212" className="text-gray-400 hover:text-white transition-colors">
+                  +7 (747) 760-12-12 (Актау)
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Аккаунты */}
-          <div>
+          {/* <div>
             <h3 className="text-gray-200 font-semibold mb-4">Социальные сети</h3>
             <ul className="space-y-3">
               <li>
@@ -68,10 +63,10 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Email */}
-          <div>
+          {/* <div>
             <h3 className="text-gray-200 font-semibold mb-4">Email</h3>
             <ul className="space-y-3">
               <li>
@@ -95,7 +90,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Copyright */}
