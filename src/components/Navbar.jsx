@@ -47,7 +47,7 @@ const Navbar = () => {
                     className="text-[#f5f5f7] text-[12px] font-medium opacity-80 hover:opacity-100 transition-opacity h-full flex flex-col items-center justify-end pb-1"
                   >
                     <img src={storeImg} alt="Store" className="w-0 h-0 group-hover/nav:w-[32px] group-hover/nav:h-[32px] transition-all duration-300 mb-1" />
-                    Store
+                    Магазин
                   </Link>
                 </li>
                 <li className="h-full">

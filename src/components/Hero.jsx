@@ -50,8 +50,8 @@ const Hero = () => {
         id="cta"
         className="flex flex-col items-center opacity-0 translate-y-20"
       >
-        <a href="#highlights" className="btn">Buy</a>
-        <p className="font-normal text-xl">From ₹21483.00/mo. or ₹134900.00</p>
+        <a href="#highlights" className="btn">Купить</a>
+        <p className="font-normal text-xl">От ₸21483.00/мес. или ₸134900.00</p>
       </div>
     </section>
   )
