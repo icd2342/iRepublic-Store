@@ -36,12 +36,12 @@ const HowItWorks = () => {
 
         <div className="flex flex-col items-center">
           <h2 className="hiw-title">
-            Процессор A17 Pro.
-            <br /> Невероятная мощность для игр.
+            Процессор A18 Pro.
+            <br /> Новый уровень мощности.
           </h2>
 
           <p className="hiw-subtitle">
-            Встречайте. Самый большой редизайн графического процессора в истории Apple.
+            Встречайте самый мощный мобильный процессор в истории.
           </p>
         </div>
 
@@ -66,26 +66,26 @@ const HowItWorks = () => {
           <div className="hiw-text-container">
                 <div className="flex flex-1 justify-center flex-col">
                   <p className="hiw-text g_fadeIn">
-                    A17 Pro - это совершенно новый класс процессора iPhone, который обеспечивает {' '}
+                    A18 Pro - это революционный процессор, изготовленный по 3-нм технологии, который обеспечивает {' '}
                     <span className="text-white">
-                      лучшую графическую производительность за все время
+                      непревзойденную производительность и энергоэффективность
                     </span>.
                   </p>
 
                   <p className="hiw-text g_fadeIn">
-                   Мобильные {' '}
+                   Новый {' '}
                     <span className="text-white">
-                      игры будут выглядеть и ощущаться невероятно реалистично
+                      8-ядерный графический процессор обеспечивает реалистичную графику консольного уровня
                     </span>,
-                     с детализированным окружением и персонажами.
+                     с поддержкой трассировки лучей в реальном времени.
                   </p>
                 </div>
               
 
               <div className="flex-1 flex justify-center flex-col g_fadeIn">
                 <p className="hiw-text">Новый</p>
-                <p className="hiw-bigtext">Профессиональный GPU</p>
-                <p className="hiw-text">с 6 ядрами</p>
+                <p className="hiw-bigtext">8-ядерный GPU</p>
+                <p className="hiw-text">с трассировкой лучей</p>
               </div>
               </div>
             </div>

@@ -6,10 +6,10 @@ const IPhoneModal = () => {
       <div>
         <h3 className="text-gray-200 font-semibold mb-4">Купить iPhone</h3>
         <ul className="space-y-3">
-          <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone 15 Pro</a></li>
+          <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone 16 Pro</a></li>
+          <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone 16</a></li>
           <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone 15</a></li>
           <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone 14</a></li>
-          <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone 13</a></li>
           <li><a href="#" className="text-gray-400 hover:text-white transition-colors">iPhone SE</a></li>
           <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Сравнить iPhone</a></li>
         </ul>

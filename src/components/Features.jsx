@@ -40,8 +40,7 @@ const Features = () => {
         
         <div className="flex flex-col justify-center items-center overflow-hidden">
           <div className="mt-32 mb-24 pl-24">
-            <h2 className="text-5xl lg:text-7xl font-semibold">iPhone.</h2>
-            <h2 className="text-5xl lg:text-7xl font-semibold">Создан из титана.</h2>
+            <h2 className="text-5xl lg:text-7xl font-semibold">iPhone 16 Pro.</h2>
           </div>
 
           <div className="flex-center flex-col sm:px-10">
@@ -64,25 +63,23 @@ const Features = () => {
               <div className="feature-text-container">
                 <div className="flex-1 flex-center">
                   <p className="feature-text g_text">
-                    iPhone 15 Pro is {' '}
+                    iPhone 16 Pro оснащен {' '}
                     <span className="text-white">
-                      the first iPhone to feature an aerospace-grade titanium design
+                      революционнаным процессором A18 Pro, изготовленным по 3-нм технологии
                     </span>,
-                    using the same alloy that spacecrafts use for missions to Mars.
+                    что обеспечивает беспрецедентную производительность и энергоэффективность.
                   </p>
                 </div>
 
                 <div className="flex-1 flex-center">
                   <p className="feature-text g_text">
-                    Titanium has one of the best strength-to-weight ratios of any metal, making these our {' '}
+                    Благодаря улучшенному титановому корпусу и передовым технологиям, это {' '}
                     <span className="text-white">
-                      lightest Pro models ever.
+                      самый прочный и легкий Pro iPhone.
                     </span>
-                    You'll notice the difference the moment you pick one up.
+                    Почувствуйте разницу с первого прикосновения.
                   </p>
                 </div>
-
-
               </div>
             </div>
           </div>
