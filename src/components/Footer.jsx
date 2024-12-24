@@ -9,10 +9,10 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-200 font-semibold mb-4">Адреса</h3>
             <ul className="space-y-3">
+            <li className="text-gray-400">ТРЦ Форум, Молдагалиева 18, Орал (10:00-20:00)</li>
               <li className="text-gray-400">ул. Жарбосынова 85, Атырау (10:00-21:00)</li>
               <li className="text-gray-400">ул. Сатпаева 17, ТРК Атырау (10:00-21:00)</li>
               <li className="text-gray-400">16 мкр, 85 дом, Актау (10:00-21:00)</li>
-              <li className="text-gray-400">ТРЦ Форум, Молдагалиева 18, Орал (10:00-20:00)</li>
             </ul>
           </div>
 
@@ -21,13 +21,13 @@ const Footer = () => {
             <h3 className="text-gray-200 font-semibold mb-4">Телефоны</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+77477600606" className="text-gray-400 hover:text-white transition-colors">
-                  +7 (747) 760-06-06 (Атырау)
+                <a href="tel:+77477607700" className="text-gray-400 hover:text-white transition-colors">
+                  +7 (747) 760-77-00 (Орал)
                 </a>
               </li>
               <li>
-                <a href="tel:+77477607700" className="text-gray-400 hover:text-white transition-colors">
-                  +7 (747) 760-77-00 (Орал)
+                <a href="tel:+77477600606" className="text-gray-400 hover:text-white transition-colors">
+                  +7 (747) 760-06-06 (Атырау)
                 </a>
               </li>
               <li>
@@ -39,31 +39,26 @@ const Footer = () => {
           </div>
 
           {/* Аккаунты */}
-          {/* <div>
+          <div>
             <h3 className="text-gray-200 font-semibold mb-4">Социальные сети</h3>
             <ul className="space-y-3">
               <li>
-                <a href="https://instagram.com/irepublic.msk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  @irepublic.msk
+                <a href="https://instagram.com/irepublic_uralsk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  @irepublic_uralsk
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/irepublic.spb" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  @irepublic.spb
+                <a href="https://instagram.com/irepublic_atyrau_tm" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  @irepublic_atyrau_tm
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/irepublic.kzn" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  @irepublic.kzn
-                </a>
-              </li>
-              <li>
-                <a href="https://instagram.com/irepublic.nsk" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                  @irepublic.nsk
+                <a href="https://instagram.com/irepublic_aktau_tm" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  @irepublic_aktau_tm
                 </a>
               </li>
             </ul>
-          </div> */}
+          </div>
 
           {/* Email */}
           {/* <div>
