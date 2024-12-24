@@ -1,6 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import settings from '../../settings.json';
 
 const TradeIn = () => {
+  const [imageHeight, setImageHeight] = useState('55vh');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setImageHeight('20vh');
+      } else {
+        setImageHeight('55vh');
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="w-full min-h-screen bg-[#161617] text-white">
       {/* Hero Text Section */}
@@ -9,16 +33,24 @@ const TradeIn = () => {
         <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
           Обменяйте свое устройство на новое с доплатой.
         </p>
-        <a href="#" className="text-lg md:text-xl text-blue-500 hover:underline mt-4 inline-block">
-          Узнать стоимость вашего устройства  →
+        <a 
+          href={`https://wa.me/${settings.whatsappNumber}?text=Здравствуйте!%20Интересует%20trade-in%20устройства.%20Хотел(а)%20бы%20узнать%20подробности.`} 
+          className="text-lg md:text-xl text-blue-500 hover:underline mt-4 inline-block"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Написать в WhatsApp →
         </a>
       </div>
 
       {/* Hero Image Section */}
       <div 
-        className="h-[50vh] md:h-[55vh] bg-cover bg-center relative mb-210"
+        className="bg-cover bg-center relative mb-210"
         style={{ 
-          backgroundImage: 'url(/public/assets/images/tradein.jpg)'
+          backgroundImage: 'url(/public/assets/images/tradein.jpg)',
+          height: imageHeight,
+          backgroundSize: window.innerWidth < 768 ? 'contain' : 'cover',
+          backgroundRepeat: 'no-repeat'
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#161617]" />
@@ -48,8 +80,8 @@ const TradeIn = () => {
                 />
               </div>
               <h3 className="text-2xl md:text-3xl font-semibold mb-4">iPhone</h3>
-              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до ₽67 800 в зачёт</p>
-              <a href="#" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
+              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до 350 000 ₸ в зачёт</p>
+              <a href="/iphone" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
             </div>
 
             <div className="text-center">
@@ -61,8 +93,8 @@ const TradeIn = () => {
                 />
               </div>
               <h3 className="text-2xl md:text-3xl font-semibold mb-4">iPad</h3>
-              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до ₽48 000 в зачёт</p>
-              <a href="#" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
+              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до 250 000 ₸ в зачёт</p>
+              <a href="/ipad" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
             </div>
 
             <div className="text-center">
@@ -74,8 +106,8 @@ const TradeIn = () => {
                 />
               </div>
               <h3 className="text-2xl md:text-3xl font-semibold mb-4">Mac</h3>
-              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до ₽115 000 в зачёт</p>
-              <a href="#" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
+              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до 450 000 ₸ в зачёт</p>
+              <a href="/mac" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
             </div>
 
             <div className="text-center">
@@ -87,8 +119,8 @@ const TradeIn = () => {
                 />
               </div>
               <h3 className="text-2xl md:text-3xl font-semibold mb-4">Apple Watch</h3>
-              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до ₽18 500 в зачёт</p>
-              <a href="#" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
+              <p className="text-lg md:text-xl text-gray-400 mb-4">Получите до 100 000 ₸ в зачёт</p>
+              <a href="/watch" className="text-lg md:text-xl text-blue-500 hover:underline">Узнать стоимость →</a>
             </div>
           </div>
 
