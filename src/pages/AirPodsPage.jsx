@@ -99,7 +99,7 @@ const AirPodsPage = () => {
     {
       icon: "/icons/noise.svg",
       title: "Шумоподавление",
-      description: "Активное шумоподавление и режим ��розрачности"
+      description: "Активное шумоподавление и режим прозрачности"
     },
     {
       icon: "/icons/water.svg",

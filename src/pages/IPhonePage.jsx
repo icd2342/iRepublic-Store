@@ -172,7 +172,7 @@ const IPhonePage = () => {
 
         {/* Quick Links */}
         <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
-          <a href="#" className="text-blue-500 hover:underline">Сравнить ��одели</a>
+          <a href="#" className="text-blue-500 hover:underline">Сравнить модели</a>
           <span className="text-gray-400">•</span>
           <a href="#" className="text-blue-500 hover:underline">Руководство пользователя</a>
           <span className="text-gray-400">•</span>

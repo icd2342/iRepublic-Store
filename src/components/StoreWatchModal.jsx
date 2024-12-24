@@ -150,7 +150,7 @@ const StoreWatchModal = ({ isOpen, onClose }) => {
         <div className="bg-[#1d1d1f] rounded-2xl p-6 text-center my-8">
           <h2 className="text-2xl font-bold mb-2">Trade-in</h2>
           <p className="text-gray-400 mb-4">
-            Обменяйте свои старые Apple Watch и по��учите скидку на новые
+            Обменяйте свои старые Apple Watch и получите скидку на новые
           </p>
           <a href="/trade-in" className="text-blue-500 hover:underline">
             Узнать подробнее →

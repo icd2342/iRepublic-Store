@@ -168,7 +168,7 @@ const NewPage = () => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
-          <a href="#" className="text-blue-500 hover:underline">Сравнить моде��и</a>
+          <a href="#" className="text-blue-500 hover:underline">Сравнить модели</a>
           <span className="text-gray-400">•</span>
           <a href="#" className="text-blue-500 hover:underline">Гарантия</a>
           <span className="text-gray-400">•</span>
