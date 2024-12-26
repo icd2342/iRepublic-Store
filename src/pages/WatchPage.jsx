@@ -71,8 +71,8 @@ const ProductCard = ({ model, image, price, size, colorData = [] }) => {
 
 const FeatureIcon = ({ icon, title, description }) => (
   <div className="text-center p-4">
-    <div className="w-16 h-16 mx-auto mb-3 bg-[#2a2a2b] rounded-full flex items-center justify-center">
-      <img src={icon} alt={title} className="w-8 h-8" />
+    <div className="mx-auto mb-3 flex items-center justify-center">
+      <img src={icon} alt={title} className="w-24 h-24" />
     </div>
     <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -101,32 +101,27 @@ const WatchPage = () => {
 
   const features = [
     {
-      icon: "/icons/watchos.svg",
+      icon: "/icon1/watch/watchos.png",
       title: "watchOS",
       description: "Создан для Apple Watch"
     },
     {
-      icon: "/icons/compare.svg",
-      title: "Сравнение",
-      description: "Сравните модели Apple Watch"
-    },
-    {
-      icon: "/icons/health.svg",
+      icon: "/icon1/watch/health.png",
       title: "Здоровье",
       description: "Мониторинг здоровья и фитнеса"
     },
     {
-      icon: "/icons/accessories.svg",
+      icon: "/icon1/watch/accessories.png",
       title: "Ремешки",
       description: "Ремешки и другие аксессуары"
     },
     {
-      icon: "/icons/support.svg",
+      icon: "/icon1/support.png",
       title: "Поддержка",
       description: "Помощь в выборе и использовании"
     },
     {
-      icon: "/icons/delivery.svg",
+      icon: "/icon1/delivery.png",
       title: "Доставка",
       description: "Бесплатная доставка по всему Казахстану"
     }

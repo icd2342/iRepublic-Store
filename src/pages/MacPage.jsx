@@ -76,8 +76,8 @@ const ProductCard = ({ model, image, price, storage = [], processor, colorData =
 
 const FeatureIcon = ({ icon, title, description }) => (
   <div className="text-center p-4">
-    <div className="w-16 h-16 mx-auto mb-3 bg-[#2a2a2b] rounded-full flex items-center justify-center">
-      <img src={icon} alt={title} className="w-8 h-8" />
+    <div className="mx-auto mb-3 flex items-center justify-center">
+      <img src={icon} alt={title} className="w-24 h-24" />
     </div>
     <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -107,32 +107,32 @@ const MacPage = () => {
 
   const features = [
     {
-      icon: "/icons/chip.svg",
+      icon: "/icon1/mac/chips.png",
       title: "Apple Silicon",
       description: "Революционные процессоры Mac"
     },
     {
-      icon: "/icons/compare.svg",
+      icon: "/icon1/mac/compare.png",
       title: "Сравнение",
       description: "Сравните модели Mac"
     },
     {
-      icon: "/icons/macos.svg",
+      icon: "/icon1/mac/macos.webp",
       title: "macOS",
       description: "Создан для Mac"
     },
     {
-      icon: "/icons/accessories.svg",
+      icon: "/icon1/mac/accessories.png",
       title: "Аксессуары",
       description: "Мыши, клавиатуры и другие аксессуары"
     },
     {
-      icon: "/icons/support.svg",
+      icon: "/icon1/support.png",
       title: "Поддержка",
       description: "Помощь в выборе и использовании"
     },
     {
-      icon: "/icons/delivery.svg",
+      icon: "/icon1/delivery.png",
       title: "Доставка",
       description: "Бесплатная доставка по всему Казахстану"
     }

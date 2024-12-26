@@ -103,36 +103,36 @@ const NewPage = () => {
   }));
 
   const features = [
-    {
-      icon: "/icons/ios.svg",
-      title: "Новые устройства",
-      description: "Оригинальные устройства с гарантией"
-    },
-    {
-      icon: "/icons/compare.svg",
-      title: "Сравнение",
-      description: "Сравните модели устройств"
-    },
-    {
-      icon: "/icons/airpods.svg",
-      title: "Аксессуары",
-      description: "Полный комплект аксессуаров"
-    },
-    {
-      icon: "/icons/accessories.svg",
-      title: "Гарантия",
-      description: "Официальная гарантия на все устройства"
-    },
-    {
-      icon: "/icons/support.svg",
-      title: "Поддержка",
-      description: "Помощь в выборе и использовании"
-    },
-    {
-      icon: "/icons/delivery.svg",
-      title: "Доставка",
-      description: "Бесплатная доставка по всему Казахстану"
-    }
+    // {
+    //   icon: "/icons/ios.svg",
+    //   title: "Новые устройства",
+    //   description: "Оригинальные устройства с гарантией"
+    // },
+    // {
+    //   icon: "/icons/compare.svg",
+    //   title: "Сравнение",
+    //   description: "Сравните модели устройств"
+    // },
+    // {
+    //   icon: "/icons/airpods.svg",
+    //   title: "Аксессуары",
+    //   description: "Полный комплект аксессуаров"
+    // },
+    // {
+    //   icon: "/icons/accessories.svg",
+    //   title: "Гарантия",
+    //   description: "Официальная гарантия на все устройства"
+    // },
+    // {
+    //   icon: "/icons/support.svg",
+    //   title: "Поддержка",
+    //   description: "Помощь в выборе и использовании"
+    // },
+    // {
+    //   icon: "/icons/delivery.svg",
+    //   title: "Доставка",
+    //   description: "Бесплатная доставка по всему Казахстану"
+    // }
   ];
 
   return (

@@ -77,8 +77,8 @@ const ProductCard = ({ model, image, price, storage = [], colorData = [] }) => {
 
 const FeatureIcon = ({ icon, title, description }) => (
   <div className="text-center p-4">
-    <div className="w-16 h-16 mx-auto mb-3 bg-[#2a2a2b] rounded-full flex items-center justify-center">
-      <img src={icon} alt={title} className="w-8 h-8" />
+    <div className="mx-auto mb-3 flex items-center justify-center">
+      <img src={icon} alt={title} className="w-24 h-24" />
     </div>
     <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -106,34 +106,24 @@ const IPadPage = () => {
 
   const features = [
     {
-      icon: "/icons/ipados.svg",
+      icon: "/icon1/ipad/ipados.png",
       title: "iPadOS",
       description: "Создан специально для iPad"
     },
     {
-      icon: "/icons/pencil.svg",
+      icon: "/icon1/ipad/pencil.png",
       title: "Apple Pencil",
       description: "Для творчества и заметок"
     },
     {
-      icon: "/icons/keyboard.svg",
+      icon: "/icon1/ipad/accessories.png",
       title: "Клавиатуры",
       description: "Magic Keyboard и Smart Keyboard"
     },
     {
-      icon: "/icons/apps.svg",
+      icon: "/icon1/ipad/App_Store_iOS.webp",
       title: "Приложения",
       description: "Миллионы приложений в App Store"
-    },
-    {
-      icon: "/icons/support.svg",
-      title: "Поддержка",
-      description: "Помощь в выборе и использовании"
-    },
-    {
-      icon: "/icons/delivery.svg",
-      title: "Доставка",
-      description: "Бесплатная доставка по всему Казахстану"
     }
   ];
 

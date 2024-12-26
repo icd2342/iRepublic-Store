@@ -73,8 +73,8 @@ const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
 
 const FeatureIcon = ({ icon, title, description }) => (
   <div className="text-center p-4">
-    <div className="w-16 h-16 mx-auto mb-3 bg-[#2a2a2b] rounded-full flex items-center justify-center">
-      <img src={icon} alt={title} className="w-8 h-8" />
+    <div className="mx-auto mb-3 flex items-center justify-center">
+      <img src={icon} alt={title} className="w-24 h-24" />
     </div>
     <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -102,36 +102,32 @@ const IPhonePage = () => {
     colorData: product.colors
   }));
 
+ 
   const features = [
     {
-      icon: "/icons/ios.svg",
-      title: "iOS 17",
+      icon: "/icon1/iphone/ios.png",
+      title: "iOS 18",
       description: "Последняя версия операционной системы"
     },
     {
-      icon: "/icons/compare.svg",
-      title: "Сравнение",
-      description: "Сравните модели iPhone"
-    },
-    {
-      icon: "/icons/airpods.svg",
+      icon: "/icon1/iphone/airpods.webp",
       title: "AirPods",
       description: "Идеальная пара для вашего iPhone"
     },
     {
-      icon: "/icons/accessories.svg",
+      icon: "/icon1/iphone/accessories.png",
       title: "Аксессуары",
       description: "Чехлы, зарядки и другие аксессуары"
     },
     {
-      icon: "/icons/support.svg",
-      title: "Поддержка",
-      description: "Помощь в выборе и использовании"
+      icon: "/icon1/iphone/a18pro.webp",
+      title: "A18 Pro",
+      description: "Самый быстрый чип для смартфонов в мире"
     },
     {
-      icon: "/icons/delivery.svg",
-      title: "Доставка",
-      description: "Бесплатная доставка по всему Казахстану"
+      icon: "/icon1/iphone/App_Store_iOS.webp",
+      title: "App Store",
+      description: "Миллионы приложений для iPhone"
     }
   ];
 

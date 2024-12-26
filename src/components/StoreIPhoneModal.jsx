@@ -107,34 +107,29 @@ const StoreIPhoneModal = ({ isOpen, onClose }) => {
  
   const features = [
     {
-      icon: "/icons/ios.svg",
-      title: "iOS 17",
+      icon: "/icon1/ios.png",
+      title: "iOS 18",
       description: "Последняя версия операционной системы"
     },
     {
-      icon: "/icons/compare.svg",
-      title: "Сравнение",
-      description: "Сравните модели iPhone"
-    },
-    {
-      icon: "/icons/airpods.svg",
+      icon: "/icon1/airpods.webp",
       title: "AirPods",
       description: "Идеальная пара для вашего iPhone"
     },
     {
-      icon: "/icons/accessories.svg",
+      icon: "/icon1/accessories.png",
       title: "Аксессуары",
       description: "Чехлы, зарядки и другие аксессуары"
     },
     {
-      icon: "/icons/support.svg",
-      title: "Поддержка",
-      description: "Помощь в выборе и использовании"
+      icon: "/icon1/a18pro.webp",
+      title: "A17 Pro",
+      description: "Самый быстрый чип для смартфонов в мире"
     },
     {
-      icon: "/icons/delivery.svg",
-      title: "Доставка",
-      description: "Бесплатная доставка по всему Казахстану"
+      icon: "/icon1/App_Store_iOS.webp",
+      title: "App Store",
+      description: "Миллионы приложений для iPhone"
     }
   ];
 

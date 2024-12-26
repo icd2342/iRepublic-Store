@@ -59,8 +59,8 @@ const ProductCard = ({ model, image, price, colorData = [] }) => {
 
 const FeatureIcon = ({ icon, title, description }) => (
   <div className="text-center p-4">
-    <div className="w-16 h-16 mx-auto mb-3 bg-[#2a2a2b] rounded-full flex items-center justify-center">
-      <img src={icon} alt={title} className="w-8 h-8" />
+    <div className="mx-auto mb-3 flex items-center justify-center">
+      <img src={icon} alt={title} className="w-24 h-24" />
     </div>
     <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
     <p className="text-gray-400 text-sm">{description}</p>
@@ -87,32 +87,32 @@ const AirPodsPage = () => {
 
   const features = [
     {
-      icon: "/icons/audio.svg",
+      icon: "/icon1/airpods/sound.png",
       title: "Пространственное аудио",
       description: "Иммерсивный звук с отслеживанием движений головы"
     },
     {
-      icon: "/icons/battery.svg",
+      icon: "/icon1/airpods/batteries.png",
       title: "Длительная работа",
       description: "До 30 часов прослушивания"
     },
     {
-      icon: "/icons/noise.svg",
+      icon: "/icon1/airpods/preview.png",
       title: "Шумоподавление",
       description: "Активное шумоподавление и режим прозрачности"
     },
     {
-      icon: "/icons/water.svg",
+      icon: "/icon1/airpods/water.png",
       title: "Влагозащита",
       description: "Защита от пота и брызг"
     },
     {
-      icon: "/icons/support.svg",
+      icon: "/icon1/support.png",
       title: "Поддержка",
       description: "Помощь в выборе и использовании"
     },
     {
-      icon: "/icons/delivery.svg",
+      icon: "/icon1/delivery.png",
       title: "Доставка",
       description: "Бесплатная доставка по всему Казахстану"
     }
