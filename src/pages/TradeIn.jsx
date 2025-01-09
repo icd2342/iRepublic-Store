@@ -47,7 +47,7 @@ const TradeIn = () => {
       <div 
         className="bg-cover bg-center relative mb-210"
         style={{ 
-          backgroundImage: 'url(src/public/assets/images/tradein.jpg)',
+          backgroundImage: 'url(/public/assets/images/tradein.jpg)',
           height: imageHeight,
           backgroundSize: window.innerWidth < 768 ? 'contain' : 'cover',
           backgroundRepeat: 'no-repeat'
@@ -74,7 +74,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-[#1d1d1f] rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="src/public/pictures/iphone/iphone_16_pro_DesertTitanium.png"
+                  src="public/pictures/iphone/iphone_16_pro_DesertTitanium.png"
                   alt="iPhone Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
@@ -87,7 +87,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-[#1d1d1f] rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="src/public/pictures/ipad/iPad_Pro_Silver.png"
+                  src="public/pictures/ipad/iPad_Pro_Silver.png"
                   alt="iPad Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
@@ -100,7 +100,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-[#1d1d1f] rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="src/public/pictures/mac/MacBook_Pro.png"
+                  src="public/pictures/mac/MacBook_Pro.png"
                   alt="Mac Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
@@ -113,7 +113,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-[#1d1d1f] rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="src/public/pictures/watch/appleWatch_10.png"
+                  src="public/pictures/watch/appleWatch_10.png"
                   alt="Apple Watch Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
