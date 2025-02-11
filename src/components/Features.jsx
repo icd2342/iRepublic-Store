@@ -29,7 +29,7 @@ const Features = () => {
         </div>
         
         <div className="flex flex-col justify-center items-center overflow-hidden">
-          <div className="mt-32 mb-24 pl-24">
+          <div className="mt-20 sm:mt-32 mb-16 sm:mb-24 px-6 sm:pl-24">
             <h2 className="text-5xl lg:text-7xl font-semibold">iPhone 16 Pro.</h2>
           </div>
 
@@ -50,7 +50,7 @@ const Features = () => {
                   <p className="feature-text g_text">
                     iPhone 16 Pro оснащен {' '}
                     <span className="text-white">
-                      революционнаным процессором A18 Pro, изготовленным по 3-нм технологии
+                      революционнананым процессором A18 Pro, изготовленным по 3-нм технологии
                     </span>,
                     что обеспечивает беспрецедентную производительность и энергоэффективность.
                   </p>

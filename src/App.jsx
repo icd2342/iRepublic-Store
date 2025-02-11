@@ -12,7 +12,6 @@ import MacPage from './pages/MacPage';
 import IPadPage from './pages/IPadPage';
 import WatchPage from './pages/WatchPage';
 import AirPodsPage from './pages/AirPodsPage';
-import NewPage from './pages/NewPage';
 import UsedPage from './pages/UsedPage';
 
 const App = () => {
@@ -37,7 +36,6 @@ const App = () => {
           <Route path="/ipad" element={<IPadPage />} />
           <Route path="/watch" element={<WatchPage />} />
           <Route path="/airpods" element={<AirPodsPage />} />
-          <Route path="/new" element={<NewPage />} />
           <Route path="/used" element={<UsedPage />} />
         </Routes>
       </div>

@@ -35,7 +35,7 @@ const Hero = () => {
       <div className="h-full w-full flex-center flex-col">
         <div className="md:w-10/12 w-9/12">
           <video 
-            className={screenType == 'small' ? 'pointer-events-none w-10/12 mx-auto' : ''}
+            className={screenType == 'small' ? 'pointer-events-none w-10/12 mx-auto translate-x-1' : ''}
             autoPlay 
             muted 
             playsInline={true} 
@@ -48,7 +48,7 @@ const Hero = () => {
 
       <div
         id="cta"
-        className="flex flex-col items-center opacity-0 translate-y-20"
+        className="flex flex-col items-center opacity-0 translate-y-20 mt-4"
       >
         <a href="#highlights" className="btn">Купить</a>
         <p className="font-normal text-xl">От ₸21483.00/мес. или ₸134900.00</p>

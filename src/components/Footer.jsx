@@ -9,7 +9,7 @@ const Footer = () => {
           <div>
             <h3 className="text-gray-200 font-semibold mb-4">Адреса</h3>
             <ul className="space-y-3">
-            <li className="text-gray-400">ТРЦ Форум, Молдагалиева 18, Орал (10:00-20:00)</li>
+              <li className="text-gray-400">ТРЦ Форум, Молдагалиева 18, Орал (10:00-20:00)</li>
               <li className="text-gray-400">ул. Жарбосынова 85, Атырау (10:00-21:00)</li>
               <li className="text-gray-400">ул. Сатпаева 17, ТРК Атырау (10:00-21:00)</li>
               <li className="text-gray-400">16 мкр, 85 дом, Актау (10:00-21:00)</li>
@@ -38,7 +38,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Аккаунты */}
+          {/* Социальные сети */}
           <div>
             <h3 className="text-gray-200 font-semibold mb-4">Социальные сети</h3>
             <ul className="space-y-3">

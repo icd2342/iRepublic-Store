@@ -1,173 +1,241 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import settings from '../../settings.json';
+import React, { useState } from 'react';
+import BuyModal from '../components/BuyModal';
 
-const ProductCard = ({ model, image, price, storage = [], colorData = [] }) => {
-  const [selectedStorage, setSelectedStorage] = useState(storage[0] || '');
-  const [selectedColor, setSelectedColor] = useState(colorData[0] || null);
-
-  // Filter out duplicate colors based on hex value
-  const uniqueColors = colorData.filter((color, index, self) =>
-    index === self.findIndex((c) => c.hex === color.hex)
-  );
-
-  const handleBuy = () => {
-    const message = `Здравствуйте! Интересует ${model} ${selectedStorage} ${selectedColor?.name || ''} за ${price} ${settings.currency}`;
-    const encodedMessage = encodeURIComponent(message);
-    console.log(encodedMessage);  
-    const whatsappUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-  };
+const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="bg-[#1d1d1f] rounded-2xl p-4 text-center">
-      <div className="aspect-square mb-4 flex items-center justify-center">
-        <img src={image} alt={model} className="w-40 h-auto" />
-      </div>
-      <h2 className="text-lg font-bold mb-1">{model}</h2>
-      {storage.length > 0 && (
-        <div className="text-sm text-gray-400 mb-2 flex flex-wrap gap-2 justify-center">
-          {storage.map((option) => (
-            <button
-              key={option}
-              className={`px-3 py-1 rounded-full ${
-                selectedStorage === option
-                ? 'bg-gray-500 text-white hover:bg-gray-600'
-                : 'bg-blue-500 text-white'
-              }`}
-              onClick={() => setSelectedStorage(option)}
-            >
-              {option}
-            </button>
-          ))}
+    <>
+      <div className="flex flex-col items-center text-center">
+        <div className="relative h-[400px] w-full flex items-center justify-center mb-8">
+          <img 
+            src={image} 
+            alt={model} 
+            className="h-[350px] w-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+          />
         </div>
-      )}
-      {uniqueColors.length > 0 && (
-        <div className="flex flex-col items-center gap-2 mb-3">
-          <div className="flex justify-center gap-1">
-            {uniqueColors.map((color) => (
-              <button
-                key={color.hex}
-                className={`w-4 h-4 rounded-full transition-transform ${
-                  selectedColor?.hex === color.hex
-                    ? 'ring-2 ring-offset-2 ring-blue-500 ring-offset-[#1d1d1f] scale-110'
-                    : 'hover:scale-110'
-                }`}
-                style={{ backgroundColor: color.hex }}
-                onClick={() => setSelectedColor(color)}
-                title={color.name}
-              />
-            ))}
-          </div>
-          <span className="text-sm text-gray-400">{selectedColor?.name}</span>
+
+        <div className="space-y-1">
+          {model.includes('New') && (
+            <span className="text-[#c15700] text-sm">Новинка</span>
+          )}
+          <h2 className="text-[28px] font-medium text-black">{model}</h2>
+          <p className="text-[17px] text-black/80 mb-1">Суперсила творчества.</p>
+          <p className="text-[14px] text-black mb-6">
+            От {price.toLocaleString()} ₸ или {Math.round(price/24).toLocaleString()} ₸/мес. на 24 мес.*
+          </p>
+
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="bg-[#0071e3] text-white px-4 py-1 rounded-full text-sm font-medium hover:bg-[#0077ed] transition-colors duration-300"
+          >
+            Купить
+          </button>
         </div>
-      )}
-      <p className="text-sm text-gray-400 mb-3">от {price} ₸</p>
-      <div className="space-y-2">
-        <button 
-          onClick={handleBuy}
-          className="w-full border border-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
-        >
-          Купить
-        </button>
       </div>
-    </div>
+
+      <BuyModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        model={model}
+        price={price}
+        storage={storage}
+        colors={colorData}
+        image={image}
+      />
+    </>
   );
 };
 
-const FeatureIcon = ({ icon, title, description }) => (
-  <div className="text-center p-4">
-    <div className="mx-auto mb-3 flex items-center justify-center">
-      <img src={icon} alt={title} className="w-24 h-24" />
-    </div>
-    <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
-    <p className="text-gray-400 text-sm">{description}</p>
-  </div>
+const NavIcon = ({ icon, title, link }) => (
+  <a href={link} className="flex flex-col items-center group px-3">
+    <img 
+      src={icon} 
+      alt={title} 
+      className="w-12 h-12 object-contain mb-2 transition-transform duration-300 group-hover:scale-105" 
+    />
+    <span className="text-xs text-black group-hover:text-gray-600 transition-colors duration-300 text-center">
+      {title}
+    </span>
+  </a>
 );
 
+const navIcons = [
+  {
+    icon: "/iconapple/IMG_4688.PNG",
+    title: "iPad Pro",
+    link: "#ipad-pro"
+  },
+  {
+    icon: "/iconapple/IMG_4687.PNG",
+    title: "iPad Air",
+    link: "#ipad-air"
+  },
+  {
+    icon: "/iconapple/IMG_4694.PNG",
+    title: "iPad Accessories",
+    link: "#ipad"
+  },
+  {
+    icon: "/iconapple/IMG_4693.PNG",
+    title: "iPadOS",
+    link: "#ipadOS"
+  },
+  {
+    icon: "/iconapple/IMG_4692.PNG",
+    title: "Apple Pencil",
+    link: "#apple-pencil"
+  },
+  {
+    icon: "/iconapple/IMG_4691.PNG",
+    title: "Клавиатуры",
+    link: "#keyboards"
+  }
+];
+
 const IPadPage = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=ipad');
-    setProducts(response.data);
-  };
-
-  const productsView = products.map(product => ({
-    model: product.model,
-    image: product.image,
-    price: product.price,
-    storage: product.storage,
-    colorData: product.colors
-  }));
-
-  const features = [
+  const products = [
     {
-      icon: "/icon1/ipad/ipados.png",
-      title: "iPadOS",
-      description: "Создан специально для iPad"
+      model: "iPad Pro",
+      image: "/assets/images/ipad-pro.jpg",
+      price: 599990,
+      storage: ["256GB", "512GB", "1TB"],
+      colors: ["#000000", "#7D7E80"],
+      colorData: [
+        { name: "Space Gray", hex: "#000000" },
+        { name: "Silver", hex: "#7D7E80" }
+      ]
     },
     {
-      icon: "/icon1/ipad/pencil.png",
-      title: "Apple Pencil",
-      description: "Для творчества и заметок"
-    },
-    {
-      icon: "/icon1/ipad/accessories.png",
-      title: "Клавиатуры",
-      description: "Magic Keyboard и Smart Keyboard"
-    },
-    {
-      icon: "/icon1/ipad/App_Store_iOS.webp",
-      title: "Приложения",
-      description: "Миллионы приложений в App Store"
+      model: "iPad Air",
+      image: "/assets/images/ipad-air.jpg",
+      price: 399990,
+      storage: ["64GB", "256GB"],
+      colors: ["#000000", "#7D7E80", "#FF0000", "#0000FF"],
+      colorData: [
+        { name: "Space Gray", hex: "#000000" },
+        { name: "Silver", hex: "#7D7E80" },
+        { name: "Pink", hex: "#FF0000" },
+        { name: "Blue", hex: "#0000FF" }
+      ]
     }
   ];
 
   return (
-    <div className="pt-[44px] min-h-screen bg-[#000000]">
-      <div className="max-w-[1400px] mx-auto px-8 py-12">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-white">iPad</h1>
-          <p className="text-gray-400">Купить iPad в iRepublic</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productsView.map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
-        </div>
-
-        <div className="bg-[#1d1d1f] rounded-2xl p-6 text-center my-8">
-          <h2 className="text-2xl font-bold mb-2 text-white">Trade-in</h2>
-          <p className="text-gray-400 mb-4">
-            Обменяйте свой старый iPad и получите скидку на новый
-          </p>
-          <a href="/trade-in" className="text-blue-500 hover:underline">
-            Узнать подробнее →
-          </a>
-        </div>
-
-        <div className="border-t border-[#424245] pt-8 mt-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {features.map((feature, index) => (
-              <FeatureIcon key={index} {...feature} />
+    <div className="min-h-screen bg-white">
+      <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-12">
+        {/* Navigation Icons */}
+        <div className="overflow-x-auto mb-12">
+          <div className="flex justify-center gap-6 min-w-max px-4">
+            {navIcons.map((icon, index) => (
+              <NavIcon key={index} {...icon} />
             ))}
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
-          <a href="#" className="text-blue-500 hover:underline">Сравнить модели</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">Руководство пользователя</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">iPadOS</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">Аксессуары</a>
+        {/* Hero Section with Video */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-semibold text-black mb-3">iPad</h1>
+          <p className="text-xl text-black mb-8">Волшебство с каждым касанием.</p>
+          
+          {/* Video Container */}
+          <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden mb-16">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-auto object-cover"
+            >
+              <source src="/assets/videos/videoplayback8.webm" type="video/webm" />
+              Ваш браузер не поддерживает видео
+            </video>
+          </div>
         </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {products.map((product, index) => (
+            <ProductCard key={index} {...product} />
+          ))}
+        </div>
+
+        {/* Trade In Banner */}
+        <div className="bg-[#fbfbfd] rounded-2xl p-8 text-center mb-16">
+          <h2 className="text-3xl font-semibold text-black mb-3">Trade In</h2>
+          <p className="text-lg text-black mb-6 max-w-2xl mx-auto">
+            Обменяйте свой старый iPad и получите скидку на новый
+          </p>
+          <a href="/trade-in" 
+             className="inline-block bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-900 transition-all duration-300">
+            Узнать свою скидку
+          </a>
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t border-gray-200 pt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Атырау */}
+            <div className="text-center">
+              <h4 className="text-lg font-medium text-black mb-4">Атырау</h4>
+              <p className="text-gray-600 mb-2">Оператор: +7 747 760 0606</p>
+              <div className="mb-4">
+                <p className="text-gray-600">ул. Жарбосынова, 85</p>
+                <p className="text-gray-600">ТРК Атырау, ул. Сатпаева, 17</p>
+                <p className="text-gray-600">Жұмыс уақыты: 10:00-21:00</p>
+              </div>
+              <a 
+                href="https://instagram.com/irepublic_atyrau_tm" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300"
+              >
+                @irepublic_atyrau_tm
+              </a>
+            </div>
+
+            {/* Актау */}
+            <div className="text-center">
+              <h4 className="text-lg font-medium text-black mb-4">Актау</h4>
+              <p className="text-gray-600 mb-2">Оператор: +7 747 760 1212</p>
+              <div className="mb-4">
+                <p className="text-gray-600">16 мкр, дом 85</p>
+                <p className="text-gray-600">Жұмыс уақыты: 10:00-21:00</p>
+              </div>
+              <a 
+                href="https://instagram.com/irepublic_aktau_tm" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300"
+              >
+                @irepublic_aktau_tm
+              </a>
+            </div>
+
+            {/* Уральск */}
+            <div className="text-center">
+              <h4 className="text-lg font-medium text-black mb-4">Уральск</h4>
+              <p className="text-gray-600 mb-2">Оператор: +7 747 760 7700</p>
+              <div className="mb-4">
+                <p className="text-gray-600">ТРЦ Форум</p>
+                <p className="text-gray-600">ул. Молдагалиева, 18</p>
+                <p className="text-gray-600">Жұмыс уақыты: 10:00-20:00</p>
+              </div>
+              <a 
+                href="https://instagram.com/irepublic_uralsk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300"
+              >
+                @irepublic_uralsk
+              </a>
+            </div>
+          </div>
+
+          <div className="text-center text-gray-500 text-sm mt-8 pb-4">
+            © 2024 iRepublic. Все права защищены.
+          </div>
+        </footer>
       </div>
     </div>
   );

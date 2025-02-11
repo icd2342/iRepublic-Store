@@ -1,175 +1,239 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import settings from '../../settings.json';
+import React, { useState } from 'react';
+import BuyModal from '../components/BuyModal';
 
-const ProductCard = ({ model, image, price, size, colorData = [] }) => {
-  const [selectedSize, setSelectedSize] = useState(size || '');
-  const [selectedColor, setSelectedColor] = useState(colorData[0] || null);
-
-  // Filter out duplicate colors based on hex value
-  const uniqueColors = colorData.filter((color, index, self) =>
-    index === self.findIndex((c) => c.hex === color.hex)
-  );
-
-  const handleBuy = () => {
-    const message = `Здравствуйте! Интересует ${model} ${selectedSize}мм ${selectedColor?.name || ''} за ${price} ${settings.currency}`;
-    const encodedMessage = encodeURIComponent(message);
-    console.log(encodedMessage);  
-    const whatsappUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-  };
+const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="bg-[#1d1d1f] rounded-2xl p-4 text-center">
-      <div className="aspect-square mb-4 flex items-center justify-center">
-        <img src={image} alt={model} className="w-40 h-auto" />
-      </div>
-      <h2 className="text-lg font-bold mb-1">{model}</h2>
-      <div className="text-sm text-gray-400 mb-2 flex flex-wrap gap-2 justify-center">
-        {size && (
-          <button
-            className={`px-3 py-1 rounded-full ${
-              selectedSize === size
-                ? 'bg-gray-500 text-white hover:bg-gray-600'
-                : 'bg-blue-500 text-white'
-            }`}
-          >
-            {size} мм
-          </button>
-        )}
-      </div>
-      <div className="flex flex-col items-center gap-2 mb-3">
-        <div className="flex justify-center gap-1">
-          {uniqueColors.map((color) => (
-            <button
-              key={color.hex}
-              className={`w-4 h-4 rounded-full transition-transform ${
-                selectedColor?.hex === color.hex
-                  ? 'ring-2 ring-offset-2 ring-blue-500 ring-offset-[#1d1d1f] scale-110'
-                  : 'hover:scale-110'
-              }`}
-              style={{ backgroundColor: color.hex }}
-              onClick={() => setSelectedColor(color)}
-              title={color.name}
-            />
-          ))}
+    <>
+      <div className="flex flex-col items-center text-center">
+        <div className="relative h-[400px] w-full flex items-center justify-center mb-8">
+          <img 
+            src={image} 
+            alt={model} 
+            className="h-[350px] w-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
+          />
         </div>
-        <span className="text-sm text-gray-400">{selectedColor?.name}</span>
+
+        <div className="space-y-1">
+          {model.includes('New') && (
+            <span className="text-[#c15700] text-sm">Новинка</span>
+          )}
+          <h2 className="text-[28px] font-medium text-black">{model}</h2>
+          <p className="text-[17px] text-black/80 mb-1">Время быть лучше.</p>
+          <p className="text-[14px] text-black mb-6">
+            От {price.toLocaleString()} ₸ или {Math.round(price/24).toLocaleString()} ₸/мес. на 24 мес.*
+          </p>
+
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="bg-[#0071e3] text-white px-4 py-1 rounded-full text-sm font-medium hover:bg-[#0077ed] transition-colors duration-300"
+          >
+            Купить
+          </button>
+        </div>
       </div>
-      <p className="text-sm text-gray-400 mb-3">от {price} ₸</p>
-      <div className="space-y-2">
-        <button 
-          onClick={handleBuy}
-          className="w-full border border-gray-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
-        >
-          Купить
-        </button>
-      </div>
-    </div>
+
+      <BuyModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        model={model}
+        price={price}
+        storage={storage}
+        colors={colorData}
+        image={image}
+      />
+    </>
   );
 };
 
-const FeatureIcon = ({ icon, title, description }) => (
-  <div className="text-center p-4">
-    <div className="mx-auto mb-3 flex items-center justify-center">
-      <img src={icon} alt={title} className="w-24 h-24" />
-    </div>
-    <h3 className="text-white text-lg font-semibold mb-1">{title}</h3>
-    <p className="text-gray-400 text-sm">{description}</p>
-  </div>
+const NavIcon = ({ icon, title, link }) => (
+  <a href={link} className="flex flex-col items-center group px-3">
+    <img 
+      src={icon} 
+      alt={title} 
+      className="w-12 h-12 object-contain mb-2 transition-transform duration-300 group-hover:scale-105" 
+    />
+    <span className="text-xs text-black group-hover:text-gray-600 transition-colors duration-300 text-center">
+      {title}
+    </span>
+  </a>
 );
 
+const navIcons = [
+  {
+    icon: "/iconapple/IMG_4713.PNG",
+    title: "Series 9",
+    link: "#series-9"
+  },
+  {
+    icon: "/iconapple/IMG_4712.PNG",
+    title: "Ultra 2",
+    link: "#ultra-2"
+  },
+  {
+    icon: "/iconapple/IMG_4710.PNG",
+    title: "Watch SE",
+    link: "#watch-se"
+  },
+  {
+    icon: "/iconapple/IMG_4671.PNG",
+    title: "Здоровье",
+    link: "#health"
+  },
+  {
+    icon: "/iconapple/IMG_4703.PNG",
+    title: "watchOS",
+    link: "#watchos"
+  },
+  {
+    icon: "/iconapple/IMG_4708.PNG",
+    title: "Ремешки",
+    link: "#straps"
+  }
+];
+
 const WatchPage = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=watch');
-    console.log(response.data);
-    setProducts(response.data);
-  };
-
-  const productsView = products.map(product => ({
-    model: product.model,
-    image: product.image,
-    price: product.price,
-    size: product.size,
-    colorData: product.colors
-  }));
-
-  const features = [
+  const products = [
     {
-      icon: "/icon1/watch/watchos.png",
-      title: "watchOS",
-      description: "Создан для Apple Watch"
+      model: "Apple Watch Series 9",
+      image: "/assets/images/watch-series9.jpg",
+      price: 199990,
+      storage: ["41mm", "45mm"],
+      colors: ["#000000", "#FFFFFF", "#FF0000"],
+      colorData: [
+        { name: "Черный", hex: "#000000" },
+        { name: "Белый", hex: "#FFFFFF" },
+        { name: "Красный", hex: "#FF0000" }
+      ]
     },
     {
-      icon: "/icon1/watch/health.png",
-      title: "Здоровье",
-      description: "Мониторинг здоровья и фитнеса"
-    },
-    {
-      icon: "/icon1/watch/accessories.png",
-      title: "Ремешки",
-      description: "Ремешки и другие аксессуары"
-    },
-    {
-      icon: "/icon1/support.png",
-      title: "Поддержка",
-      description: "Помощь в выборе и использовании"
-    },
-    {
-      icon: "/icon1/delivery.png",
-      title: "Доставка",
-      description: "Бесплатная доставка по всему Казахстану"
+      model: "Apple Watch Ultra 2",
+      image: "/assets/images/watch-ultra2.jpg",
+      price: 399990,
+      storage: ["49mm"],
+      colors: ["#7D7E80"],
+      colorData: [
+        { name: "Титановый", hex: "#7D7E80" }
+      ]
     }
   ];
 
   return (
-    <div className="pt-[44px] min-h-screen bg-[#000000]">
-      <div className="max-w-[1400px] mx-auto px-8 py-12">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-white">Apple Watch</h1>
-          <p className="text-gray-400">Купить Apple Watch в iRepublic</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productsView.map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
-        </div>
-
-        <div className="bg-[#1d1d1f] rounded-2xl p-6 text-center my-8">
-          <h2 className="text-2xl font-bold mb-2 text-white">Trade-in</h2>
-          <p className="text-gray-400 mb-4">
-            Обменяйте свои старые Apple Watch и получите скидку на новые
-          </p>
-          <a href="/trade-in" className="text-blue-500 hover:underline">
-            Узнать подробнее →
-          </a>
-        </div>
-
-        <div className="border-t border-[#424245] pt-8 mt-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {features.map((feature, index) => (
-              <FeatureIcon key={index} {...feature} />
+    <div className="min-h-screen bg-white">
+      <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-12">
+        {/* Navigation Icons */}
+        <div className="overflow-x-auto mb-12">
+          <div className="flex justify-center gap-6 min-w-max px-4">
+            {navIcons.map((icon, index) => (
+              <NavIcon key={index} {...icon} />
             ))}
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm">
-          <a href="#" className="text-blue-500 hover:underline">Сравнить модели</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">Руководство пользователя</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">watchOS</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">Ремешки</a>
-          <span className="text-gray-400">•</span>
-          <a href="#" className="text-blue-500 hover:underline">Поддержка</a>
+        {/* Hero Section with Video */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-semibold text-black mb-3">Apple Watch</h1>
+          <p className="text-xl text-black mb-8">Здоровье. Фитнес. Общение.</p>
+          
+          {/* Video Container */}
+          <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden mb-16">
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-auto object-cover"
+            >
+              <source src="/assets/videos/videoplayback7.webm" type="video/webm" />
+              Ваш браузер не поддерживает видео
+            </video>
+          </div>
         </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {products.map((product, index) => (
+            <ProductCard key={index} {...product} />
+          ))}
+        </div>
+
+        {/* Trade In Banner */}
+        <div className="bg-[#fbfbfd] rounded-2xl p-8 text-center mb-16">
+          <h2 className="text-3xl font-semibold text-black mb-3">Trade In</h2>
+          <p className="text-lg text-black mb-6 max-w-2xl mx-auto">
+            Обменяйте свои старые Apple Watch и получите скидку на новые
+          </p>
+          <a href="/trade-in" 
+             className="inline-block bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-900 transition-all duration-300">
+            Узнать свою скидку
+          </a>
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t border-gray-200 pt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Атырау */}
+            <div className="text-center">
+              <h4 className="text-lg font-medium text-black mb-4">Атырау</h4>
+              <p className="text-gray-600 mb-2">Оператор: +7 747 760 0606</p>
+              <div className="mb-4">
+                <p className="text-gray-600">ул. Жарбосынова, 85</p>
+                <p className="text-gray-600">ТРК Атырау, ул. Сатпаева, 17</p>
+                <p className="text-gray-600">Жұмыс уақыты: 10:00-21:00</p>
+              </div>
+              <a 
+                href="https://instagram.com/irepublic_atyrau_tm" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300"
+              >
+                @irepublic_atyrau_tm
+              </a>
+            </div>
+
+            {/* Актау */}
+            <div className="text-center">
+              <h4 className="text-lg font-medium text-black mb-4">Актау</h4>
+              <p className="text-gray-600 mb-2">Оператор: +7 747 760 1212</p>
+              <div className="mb-4">
+                <p className="text-gray-600">16 мкр, дом 85</p>
+                <p className="text-gray-600">Жұмыс уақыты: 10:00-21:00</p>
+              </div>
+              <a 
+                href="https://instagram.com/irepublic_aktau_tm" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300"
+              >
+                @irepublic_aktau_tm
+              </a>
+            </div>
+
+            {/* Уральск */}
+            <div className="text-center">
+              <h4 className="text-lg font-medium text-black mb-4">Уральск</h4>
+              <p className="text-gray-600 mb-2">Оператор: +7 747 760 7700</p>
+              <div className="mb-4">
+                <p className="text-gray-600">ТРЦ Форум</p>
+                <p className="text-gray-600">ул. Молдагалиева, 18</p>
+                <p className="text-gray-600">Жұмыс уақыты: 10:00-20:00</p>
+              </div>
+              <a 
+                href="https://instagram.com/irepublic_uralsk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300"
+              >
+                @irepublic_uralsk
+              </a>
+            </div>
+          </div>
+
+          <div className="text-center text-gray-500 text-sm mt-8 pb-4">
+            © 2024 iRepublic. Все права защищены.
+          </div>
+        </footer>
       </div>
     </div>
   );

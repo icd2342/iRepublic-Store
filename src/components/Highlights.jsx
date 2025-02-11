@@ -11,19 +11,19 @@ const Highlights = () => {
   }, [])
 
   return (
-    <section id="highlights" className="w-screen overflow-hidden h-full common-padding bg-zinc">
-      <div className="screen-max-width">
-        <div className="mb-12 w-full md:flex items-end justify-between">
-          <h1 id="title" className="section-heading">Узнайте главное.</h1>
+    <section id="highlights" className="w-full overflow-hidden h-auto common-padding bg-zinc">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="mb-8 md:mb-12 w-full md:flex items-end justify-between">
+          <h1 id="title" className="section-heading mb-4 md:mb-0">Узнайте главное.</h1>
 
-          <div className="flex flex-wrap items-end gap-5">
-            <p className="link">
+          <div className="flex flex-wrap items-end gap-3 md:gap-5">
+            <p className="link text-base md:text-lg">
               Смотреть фильм
-              <img src={watchImg} alt="watch" className="ml-2" />
+              <img src="/assets/images/watch.svg" alt="watch" className="ml-2 inline w-3 md:w-4" />
             </p>
-            <p className="link">
+            <p className="link text-base md:text-lg">
               Смотреть презентацию
-              <img src={rightImg} alt="right" className="ml-2" />
+              <img src="/assets/images/right.svg" alt="right" className="ml-2 inline w-3 md:w-4" />
             </p>
           </div>
         </div>
