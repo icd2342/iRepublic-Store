@@ -94,30 +94,26 @@ const navIcons = [
 ];
 
 const WatchPage = () => {
-  const products = [
-    {
-      model: "Apple Watch Series 9",
-      image: "/assets/images/watch-series9.jpg",
-      price: 199990,
-      storage: ["41mm", "45mm"],
-      colors: ["#000000", "#FFFFFF", "#FF0000"],
-      colorData: [
-        { name: "Черный", hex: "#000000" },
-        { name: "Белый", hex: "#FFFFFF" },
-        { name: "Красный", hex: "#FF0000" }
-      ]
-    },
-    {
-      model: "Apple Watch Ultra 2",
-      image: "/assets/images/watch-ultra2.jpg",
-      price: 399990,
-      storage: ["49mm"],
-      colors: ["#7D7E80"],
-      colorData: [
-        { name: "Титановый", hex: "#7D7E80" }
-      ]
-    }
-  ];
+  const [products_api, setProducts] = useState([]);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+    console.log(response.data);
+    setProducts(response.data);
+  };
+
+  const productsView = products_api.map(product => ({
+    model: product.model,
+    image: product.image,
+    price: product.price,
+    storage: product.storage,
+    colors: Array.from(new Map(product.colors.map(color => [color.hex, color.hex])).values()),
+    colorData: product.colors
+  }));
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -153,7 +149,7 @@ const WatchPage = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {products.map((product, index) => (
+          {products_api.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
         </div>

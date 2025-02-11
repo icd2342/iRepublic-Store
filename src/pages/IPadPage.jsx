@@ -94,32 +94,26 @@ const navIcons = [
 ];
 
 const IPadPage = () => {
-  const products = [
-    {
-      model: "iPad Pro",
-      image: "/assets/images/ipad-pro.jpg",
-      price: 599990,
-      storage: ["256GB", "512GB", "1TB"],
-      colors: ["#000000", "#7D7E80"],
-      colorData: [
-        { name: "Space Gray", hex: "#000000" },
-        { name: "Silver", hex: "#7D7E80" }
-      ]
-    },
-    {
-      model: "iPad Air",
-      image: "/assets/images/ipad-air.jpg",
-      price: 399990,
-      storage: ["64GB", "256GB"],
-      colors: ["#000000", "#7D7E80", "#FF0000", "#0000FF"],
-      colorData: [
-        { name: "Space Gray", hex: "#000000" },
-        { name: "Silver", hex: "#7D7E80" },
-        { name: "Pink", hex: "#FF0000" },
-        { name: "Blue", hex: "#0000FF" }
-      ]
-    }
-  ];
+  const [products_api, setProducts] = useState([]);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+    console.log(response.data);
+    setProducts(response.data);
+  };
+
+  const productsView = products_api.map(product => ({
+    model: product.model,
+    image: product.image,
+    price: product.price,
+    storage: product.storage,
+    colors: Array.from(new Map(product.colors.map(color => [color.hex, color.hex])).values()),
+    colorData: product.colors
+  }));
+
 
   return (
     <div className="min-h-screen bg-white">
@@ -155,7 +149,7 @@ const IPadPage = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {products.map((product, index) => (
+          {products_api.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
         </div>
