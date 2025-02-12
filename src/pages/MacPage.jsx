@@ -109,7 +109,7 @@ const MacPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=mac');
       if (response.data) {
         console.log('Fetched products:', response.data);
         setProducts(response.data);
@@ -128,7 +128,7 @@ const MacPage = () => {
     colors: product?.colors ? Array.from(new Map(product.colors.map(color => [color?.hex || '', color?.hex || ''])).values()) : [],
     colorData: product?.colors || []
   }));
-  
+
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-12">

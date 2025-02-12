@@ -112,7 +112,7 @@ const IPadPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=ipad');
       if (response.data) {
         console.log('Fetched products:', response.data);
         setProducts(response.data);
