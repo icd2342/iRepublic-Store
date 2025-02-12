@@ -6,25 +6,33 @@ import { Link } from 'react-router-dom';
 const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Add default values and validation
+  const formattedPrice = price ? Number(price) : 0;
+  const safeModel = model || 'iPad';
+  const safeImage = image || '/default-ipad-image.png'; // Add a default image path
+  const safeStorage = storage || [];
+  const safeColors = colors || [];
+  const safeColorData = colorData || [];
+
   return (
     <>
       <div className="flex flex-col items-center text-center">
         <div className="relative h-[400px] w-full flex items-center justify-center mb-8">
           <img 
-            src={image} 
-            alt={model} 
+            src={safeImage} 
+            alt={safeModel} 
             className="h-[350px] w-auto object-contain transition-transform duration-500 hover:scale-[1.02]" 
           />
         </div>
 
         <div className="space-y-1">
-          {model.includes('New') && (
+          {safeModel.includes('New') && (
             <span className="text-[#c15700] text-sm">Новинка</span>
           )}
-          <h2 className="text-[28px] font-medium text-black">{model}</h2>
+          <h2 className="text-[28px] font-medium text-black">{safeModel}</h2>
           <p className="text-[17px] text-black/80 mb-1">Суперсила творчества.</p>
           <p className="text-[14px] text-black mb-6">
-            От {price.toLocaleString()} ₸ или {Math.round(price/24).toLocaleString()} ₸/мес. на 24 мес.*
+            От {formattedPrice.toLocaleString()} ₸ или {Math.round(formattedPrice/24).toLocaleString()} ₸/мес. на 24 мес.*
           </p>
 
           <button 
@@ -39,11 +47,11 @@ const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
       <BuyModal 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        model={model}
-        price={price}
-        storage={storage}
-        colors={colorData}
-        image={image}
+        model={safeModel}
+        price={formattedPrice}
+        storage={safeStorage}
+        colors={safeColorData}
+        image={safeImage}
       />
     </>
   );
@@ -97,25 +105,32 @@ const navIcons = [
 
 const IPadPage = () => {
   const [products_api, setProducts] = useState([]);
+  
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
-    console.log(response.data);
-    setProducts(response.data);
+    try {
+      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+      if (response.data) {
+        console.log('Fetched products:', response.data);
+        setProducts(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setProducts([]); // Set empty array on error
+    }
   };
 
   const productsView = products_api.map(product => ({
-    model: product.model,
-    image: product.image,
-    price: product.price,
-    storage: product.storage,
-    colors: Array.from(new Map(product.colors.map(color => [color.hex, color.hex])).values()),
-    colorData: product.colors
+    model: product?.model || '',
+    image: product?.image || '',
+    price: product?.price ? Number(product.price) : 0,
+    storage: product?.storage || [],
+    colors: product?.colors ? Array.from(new Map(product.colors.map(color => [color?.hex || '', color?.hex || ''])).values()) : [],
+    colorData: product?.colors || []
   }));
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -151,7 +166,7 @@ const IPadPage = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {products_api.map((product, index) => (
+          {productsView.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
         </div>

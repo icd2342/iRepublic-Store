@@ -101,7 +101,7 @@ const navIcons = [
 ];
 
 const MacPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products_api, setProducts] = useState([]);
   
   useEffect(() => {
     fetchProducts();
@@ -109,24 +109,26 @@ const MacPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=mac');
-      if (response.data && response.data.length > 0) {
+      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+      if (response.data) {
+        console.log('Fetched products:', response.data);
         setProducts(response.data);
       }
     } catch (error) {
       console.error('Error fetching products:', error);
+      setProducts([]); // Set empty array on error
     }
   };
 
-  const productsView = products.map(product => ({
-    model: product.model,
-    image: product.image,
-    price: product.price,
-    storage: product.storage,
-    colors: product.colors.map(color => color.hex),
-    colorData: product.colors
+  const productsView = products_api.map(product => ({
+    model: product?.model || '',
+    image: product?.image || '',
+    price: product?.price ? Number(product.price) : 0,
+    storage: product?.storage || [],
+    colors: product?.colors ? Array.from(new Map(product.colors.map(color => [color?.hex || '', color?.hex || ''])).values()) : [],
+    colorData: product?.colors || []
   }));
-
+  
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-12">

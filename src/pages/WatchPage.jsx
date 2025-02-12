@@ -97,23 +97,31 @@ const navIcons = [
 
 const WatchPage = () => {
   const [products_api, setProducts] = useState([]);
+  
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
-    console.log(response.data);
-    setProducts(response.data);
+    try {
+      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=used');
+      if (response.data) {
+        console.log('Fetched products:', response.data);
+        setProducts(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setProducts([]); // Set empty array on error
+    }
   };
 
   const productsView = products_api.map(product => ({
-    model: product.model,
-    image: product.image,
-    price: product.price,
-    storage: product.storage,
-    colors: Array.from(new Map(product.colors.map(color => [color.hex, color.hex])).values()),
-    colorData: product.colors
+    model: product?.model || '',
+    image: product?.image || '',
+    price: product?.price ? Number(product.price) : 0,
+    storage: product?.storage || [],
+    colors: product?.colors ? Array.from(new Map(product.colors.map(color => [color?.hex || '', color?.hex || ''])).values()) : [],
+    colorData: product?.colors || []
   }));
 
 
@@ -151,7 +159,7 @@ const WatchPage = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {products_api.map((product, index) => (
+          {productsView.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
         </div>
