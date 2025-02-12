@@ -112,12 +112,16 @@ const navIcons = [
 
 const AirPodsPage = () => {
   const [products_api, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
+    setIsLoading(true);
+    setError(null);
     try {
       const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=airpods');
       if (response.data) {
@@ -126,7 +130,10 @@ const AirPodsPage = () => {
       }
     } catch (error) {
       console.error('Error fetching products:', error);
-      setProducts([]); // Set empty array on error
+      setError('Failed to load products. Please try again later.');
+      setProducts([]); 
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -171,12 +178,28 @@ const AirPodsPage = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {productsView.map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
-        </div>
+        {/* Products Grid with Loading and Error States */}
+        {isLoading ? (
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#0071e3]"></div>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <p className="text-red-500 mb-4">{error}</p>
+            <button 
+              onClick={fetchProducts}
+              className="bg-[#0071e3] text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-[#0077ed] transition-colors duration-300"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {productsView.map((product, index) => (
+              <ProductCard key={index} {...product} />
+            ))}
+          </div>
+        )}
 
         {/* Trade In Banner */}
         <div className="bg-[#fbfbfd] rounded-2xl p-8 text-center mb-16">
