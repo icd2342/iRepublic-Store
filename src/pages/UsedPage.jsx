@@ -111,8 +111,6 @@ const UsedPage = () => {
     colorData: product.colors
   }));
 
-  console.log(productsView);
-
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-6 py-12">
@@ -153,10 +151,12 @@ const UsedPage = () => {
           <p className="text-lg text-black mb-6 max-w-2xl mx-auto">
             Обменяйте свою технику и получите скидку на новую
           </p>
-          <a href="/trade-in" 
-             className="inline-block bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-900 transition-all duration-300">
+          <Link 
+            to="/trade-in" 
+            className="inline-block bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-900 transition-all duration-300"
+          >
             Узнать свою скидку
-          </a>
+          </Link>
         </div>
 
         {/* Footer */}

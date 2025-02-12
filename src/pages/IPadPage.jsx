@@ -160,10 +160,12 @@ const IPadPage = () => {
           <p className="text-lg text-black mb-6 max-w-2xl mx-auto">
             Обменяйте свой старый iPad и получите скидку на новый
           </p>
-          <a href="/trade-in" 
-             className="inline-block bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-900 transition-all duration-300">
+          <Link 
+            to="/trade-in" 
+            className="inline-block bg-black text-white px-8 py-3 rounded-full text-base font-medium hover:bg-gray-900 transition-all duration-300"
+          >
             Узнать свою скидку
-          </a>
+          </Link>
         </div>
 
         {/* Footer */}
