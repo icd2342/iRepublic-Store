@@ -47,7 +47,7 @@ const TradeIn = () => {
       <div 
         className="bg-cover bg-center relative mb-210"
         style={{ 
-          backgroundImage: 'url(/public/assets/images/tradein.jpg)',
+          backgroundImage: 'url(/assets/images/tradein.jpg)',
           height: imageHeight,
           backgroundSize: window.innerWidth < 768 ? 'contain' : 'cover',
           backgroundRepeat: 'no-repeat',
@@ -74,7 +74,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-white rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="public/pictures/iphone/iphone_16_pro_DesertTitanium.png"
+                  src="/pictures/iphone/iphone_16_pro_DesertTitanium.png"
                   alt="iPhone Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
@@ -94,7 +94,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-white rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="public/pictures/ipad/iPad_Pro_Silver.png"
+                  src="/pictures/ipad/iPad_Pro_Silver.png"
                   alt="iPad Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
@@ -114,7 +114,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-white rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="public/pictures/mac/MacBook_Pro.png"
+                  src="/pictures/mac/MacBook_Pro.png"
                   alt="Mac Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
@@ -134,7 +134,7 @@ const TradeIn = () => {
             <div className="text-center">
               <div className="aspect-square bg-white rounded-3xl mb-8 flex items-center justify-center overflow-hidden p-8">
                 <img 
-                  src="public/pictures/watch/appleWatch_10.png"
+                  src="/pictures/watch/appleWatch_10.png"
                   alt="Apple Watch Trade In" 
                   className="w-[70%] h-auto object-contain"
                 />
