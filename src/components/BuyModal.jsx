@@ -147,7 +147,7 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
                   {(price).toLocaleString()} ₸
                 </p>
                 <p className="text-sm md:text-base text-gray-500">
-                  или {Math.round((price + (storage.indexOf(selectedStorage) * 100000))/24).toLocaleString()} ₸/мес.
+                  или {Math.round((price )/24).toLocaleString()} ₸/мес.
                 </p>
               </div>
             </div>
