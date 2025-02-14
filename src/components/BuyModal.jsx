@@ -17,6 +17,8 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
 
   if (!isOpen) return null;
 
+  console.log(isOpen, onClose, model, price, storage, size, colors, image)
+
   return (
     <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center">
       <div className="w-full h-full md:h-auto md:max-w-4xl md:mx-4 md:max-h-[90vh] overflow-y-auto bg-white md:rounded-3xl">
@@ -142,7 +144,7 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
               </div>
               <div className="text-right">
                 <p className="text-lg md:text-xl font-medium text-black">
-                  {(price + (storage.indexOf(selectedStorage) * 100000)).toLocaleString()} ₸
+                  {(price).toLocaleString()} ₸
                 </p>
                 <p className="text-sm md:text-base text-gray-500">
                   или {Math.round((price + (storage.indexOf(selectedStorage) * 100000))/24).toLocaleString()} ₸/мес.
