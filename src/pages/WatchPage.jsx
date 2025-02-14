@@ -3,7 +3,7 @@ import axios from 'axios';
 import BuyModal from '../components/BuyModal';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
+const ProductCard = ({ model, image, price, storage, size, colors, colorData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -42,6 +42,7 @@ const ProductCard = ({ model, image, price, storage, colors, colorData }) => {
         model={model}
         price={price}
         storage={storage}
+        size={size}
         colors={colorData}
         image={image}
       />
@@ -108,9 +109,8 @@ const WatchPage = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=watch');
+      const response = await axios.get('http://localhost:3000/api/product?category=apple-watch');
       if (response.data) {
-        console.log('Fetched products:', response.data);
         setProducts(response.data);
       }
     } catch (error) {
@@ -127,10 +127,10 @@ const WatchPage = () => {
     image: product?.image || '',
     price: product?.price ? Number(product.price) : 0,
     storage: product?.storage || [],
+    size: product?.size || [],
     colors: product?.colors ? Array.from(new Map(product.colors.map(color => [color?.hex || '', color?.hex || ''])).values()) : [],
     colorData: product?.colors || []
   }));
-
 
   return (
     <div className="min-h-screen bg-white">

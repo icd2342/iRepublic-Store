@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import settings from '../../settings.json';
 
-const BuyModal = ({ isOpen, onClose, model, price, storage, colors, image }) => {
-  const [selectedStorage, setSelectedStorage] = useState(storage[0]);
+const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image }) => {
+  const [selectedStorage, setSelectedStorage] = useState(storage?.[0]);
+  const [selectedSize, setSelectedSize] = useState(size?.[0]);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   const handleBuy = () => {
-    const message = `Здравствуйте! Интересует ${model} ${selectedStorage} ${selectedColor.name} за ${price} ${settings.currency}`;
+    const sizeText = selectedSize ? ` ${selectedSize}` : '';
+    const storageText = selectedStorage ? ` ${selectedStorage}` : '';
+    const message = `Здравствуйте! Интересует ${model}${sizeText}${storageText} ${selectedColor.name} за ${price} ${settings.currency}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${settings.whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
@@ -37,34 +40,58 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, colors, image }) => 
             />
           </div>
 
+          {/* Size Selection */}
+          {size && size.length > 0 && (
+            <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
+              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите размер</h3>
+              {size.map((sizeOption) => (
+                <button
+                  key={sizeOption}
+                  onClick={() => setSelectedSize(sizeOption)}
+                  className={`inline-block min-w-[120px] p-4 rounded-2xl md:rounded-3xl border transition-all duration-300
+                    ${selectedSize === sizeOption 
+                      ? 'border-[#0071e3] bg-[#0071e3]/5' 
+                      : 'border-gray-300 hover:border-gray-400'}`}
+                >
+                  <p className="text-sm md:text-base text-gray-500">{sizeOption}</p>
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Storage Selection */}
-          <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-            {storage.map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedStorage(size)}
-                className={`w-full p-4 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-300
-                  ${selectedStorage === size 
-                    ? 'border-[#0071e3] bg-[#0071e3]/5' 
-                    : 'border-gray-300 hover:border-gray-400'}`}
-              >
-                <div className="flex justify-between items-center">
-                  <div className="text-left">
-                    <p className="text-lg md:text-2xl font-medium text-black">
-                      {size === '128GB' ? 'Рекомендуемый' : 
-                       size === '256GB' ? 'Популярный' : 'Максимальный'}
-                    </p>
-                    <p className="text-sm md:text-base text-gray-500 mt-1 md:mt-2">{size}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm md:text-lg text-gray-500">
-                      или {Math.round((price + (storage.indexOf(size) * 100000))/24).toLocaleString()} ₸/мес.
-                    </p>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
+          {storage && storage.length > 0 && (
+            <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
+              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите объем</h3>
+              <div className="grid grid-cols-2 gap-2 md:gap-4">
+                {storage.map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setSelectedStorage(size)}
+                    className={`w-full p-4 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-300
+                      ${selectedStorage === size 
+                        ? 'border-[#0071e3] bg-[#0071e3]/5' 
+                        : 'border-gray-300 hover:border-gray-400'}`}
+                  >
+                    <div className="flex justify-between items-center">
+                      <div className="text-left">
+                        <p className="text-lg md:text-2xl font-medium text-black">
+                          {size === '128GB' ? 'Рекомендуемый' : 
+                           size === '256GB' ? 'Популярный' : 'Максимальный'}
+                        </p>
+                        <p className="text-sm md:text-base text-gray-500 mt-1 md:mt-2">{size}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm md:text-lg text-gray-500">
+                          или {Math.round((price + (storage.indexOf(size) * 100000))/24).toLocaleString()} ₸/мес.
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Color Selection */}
           <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
@@ -106,7 +133,12 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, colors, image }) => 
             <div className="flex justify-between items-center">
               <div>
                 <h4 className="text-lg md:text-xl font-medium text-black mb-1 md:mb-2">Итого</h4>
-                <p className="text-sm md:text-base text-gray-500">{model} • {selectedStorage} • {selectedColor.name}</p>
+                <p className="text-sm md:text-base text-gray-500">
+                  {model}
+                  {selectedSize ? ` • ${selectedSize}` : ''}
+                  {selectedStorage ? ` • ${selectedStorage}` : ''}
+                  {` • ${selectedColor.name}`}
+                </p>
               </div>
               <div className="text-right">
                 <p className="text-lg md:text-xl font-medium text-black">

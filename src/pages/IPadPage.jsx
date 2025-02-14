@@ -118,7 +118,6 @@ const IPadPage = () => {
     try {
       const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=ipad');
       if (response.data) {
-        console.log('Fetched products:', response.data);
         setProducts(response.data);
       }
     } catch (error) {
@@ -135,6 +134,7 @@ const IPadPage = () => {
     image: product?.image || '',
     price: product?.price ? Number(product.price) : 0,
     storage: product?.storage || [],
+    size: product?.size || [],
     colors: product?.colors ? Array.from(new Map(product.colors.map(color => [color?.hex || '', color?.hex || ''])).values()) : [],
     colorData: product?.colors || []
   }));
