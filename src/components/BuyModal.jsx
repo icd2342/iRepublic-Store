@@ -79,7 +79,7 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
                         {size === '128GB' ? 'Рекомендуемый' : 
                          size === '256GB' ? 'Популярный' : 'Максимальный'}
                       </span>
-                      <span className="text-xl font-medium text-gray-500">{size}</span>
+                      <span className="text-xl font-medium text-gray-500 text-left block">{size}</span>
                       </div>
                       <span className="text-sm text-gray-500 block mt-1">
                         {Math.round(price/24).toLocaleString()} ₸/мес.
