@@ -109,7 +109,7 @@ const WatchPage = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:3000/api/product?category=apple-watch');
+      const response = await axios.get('https://admin-dashboard-qff2.vercel.app/api/product?category=apple-watch');
       if (response.data) {
         setProducts(response.data);
       }
