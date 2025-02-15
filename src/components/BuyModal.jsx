@@ -74,17 +74,17 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
                       : 'border-gray-300 hover:border-gray-400'}`}
                 >
                   <div className="flex justify-between items-start">
+                  <div>
                       <span className="text-xl font-medium text-black block">
                         {size === '128GB' ? 'Рекомендуемый' : 
                          size === '256GB' ? 'Популярный' : 'Максимальный'}
                       </span>
-                      <div>
-                    <span className="text-xl font-medium text-gray-500">{size}</span>
+                      <span className="text-xl font-medium text-gray-500">{size}</span>
+                      </div>
                       <span className="text-sm text-gray-500 block mt-1">
                         {Math.round(price/24).toLocaleString()} ₸/мес.
                       </span>
                       </div>
-                  </div>
                 </button>
               ))}
             </div>
