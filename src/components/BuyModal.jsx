@@ -45,7 +45,7 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
           {/* Size Selection */}
           {size && size.length > 0 && (
             <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите размер</h3>
+              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите раз  мер</h3>
               {size.map((sizeOption) => (
                 <button
                   key={sizeOption}
@@ -64,7 +64,6 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
           {/* Storage Selection */}
           {storage && storage.length > 0 && (
             <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите объем</h3>
               {storage.map((size) => (
                 <button
                   key={size}
@@ -74,17 +73,17 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
                       ? 'border-[#0071e3] bg-[#0071e3]/5' 
                       : 'border-gray-300 hover:border-gray-400'}`}
                 >
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <span className="text-lg font-medium text-black">
+                  <div className="flex justify-between items-start">
+                      <span className="text-xl font-medium text-black block">
                         {size === '128GB' ? 'Рекомендуемый' : 
                          size === '256GB' ? 'Популярный' : 'Максимальный'}
                       </span>
-                      <p className="text-sm text-gray-500 mt-1">{size}</p>
-                    </div>
-                    <span className="text-sm text-gray-500">
-                      или {Math.round(price/24).toLocaleString()} ₸/мес.
-                    </span>
+                      <div>
+                    <span className="text-xl font-medium text-gray-500">{size}</span>
+                      <span className="text-sm text-gray-500 block mt-1">
+                        {Math.round(price/24).toLocaleString()} ₸/мес.
+                      </span>
+                      </div>
                   </div>
                 </button>
               ))}
