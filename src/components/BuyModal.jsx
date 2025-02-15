@@ -46,18 +46,20 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
           {size && size.length > 0 && (
             <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
               <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите размер</h3>
-              {size.map((sizeOption) => (
-                <button
-                  key={sizeOption}
-                  onClick={() => setSelectedSize(sizeOption)}
-                  className={`inline-block min-w-[120px] p-4 rounded-2xl md:rounded-3xl border transition-all duration-300
-                    ${selectedSize === sizeOption 
-                      ? 'border-[#0071e3] bg-[#0071e3]/5' 
-                      : 'border-gray-300 hover:border-gray-400'}`}
-                >
-                  <p className="text-sm md:text-base text-gray-500">{sizeOption}</p>
-                </button>
-              ))}
+              <div className="flex gap-2 md:gap-4">
+                {size.map((sizeOption) => (
+                  <button
+                    key={sizeOption}
+                    onClick={() => setSelectedSize(sizeOption)}
+                    className={`inline-block min-w-[120px] p-4 rounded-2xl md:rounded-3xl border transition-all duration-300
+                      ${selectedSize === sizeOption 
+                        ? 'border-[#0071e3] bg-[#0071e3]/5' 
+                        : 'border-gray-300 hover:border-gray-400'}`}
+                  >
+                    <p className="text-sm md:text-base text-gray-500">{sizeOption}</p>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
