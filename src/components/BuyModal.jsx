@@ -45,7 +45,7 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
           {/* Size Selection */}
           {size && size.length > 0 && (
             <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
-              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите раз  мер</h3>
+              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите размер</h3>
               {size.map((sizeOption) => (
                 <button
                   key={sizeOption}
@@ -64,6 +64,7 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
           {/* Storage Selection */}
           {storage && storage.length > 0 && (
             <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
+              <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите память</h3>
               {storage.map((size) => (
                 <button
                   key={size}
