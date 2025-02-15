@@ -65,33 +65,29 @@ const BuyModal = ({ isOpen, onClose, model, price, storage, size, colors, image 
           {storage && storage.length > 0 && (
             <div className="space-y-3 md:space-y-4 mb-8 md:mb-12">
               <h3 className="text-xl md:text-2xl font-medium text-black mb-4 md:mb-6">Выберите объем</h3>
-              <div className="grid grid-cols-2 gap-2 md:gap-4">
-                {storage.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedStorage(size)}
-                    className={`w-full p-4 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-300
-                      ${selectedStorage === size 
-                        ? 'border-[#0071e3] bg-[#0071e3]/5' 
-                        : 'border-gray-300 hover:border-gray-400'}`}
-                  >
-                    <div className="flex justify-between items-center">
-                      <div className="text-left">
-                        <p className="text-lg md:text-2xl font-medium text-black">
-                          {size === '128GB' ? 'Рекомендуемый' : 
-                           size === '256GB' ? 'Популярный' : 'Максимальный'}
-                        </p>
-                        <p className="text-sm md:text-base text-gray-500 mt-1 md:mt-2">{size}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm md:text-lg text-gray-500">
-                          или {Math.round((price + (storage.indexOf(size) * 100000))/24).toLocaleString()} ₸/мес.
-                        </p>
-                      </div>
+              {storage.map((size) => (
+                <button
+                  key={size}
+                  onClick={() => setSelectedStorage(size)}
+                  className={`w-full p-4 md:p-6 rounded-2xl md:rounded-3xl border transition-all duration-300
+                    ${selectedStorage === size 
+                      ? 'border-[#0071e3] bg-[#0071e3]/5' 
+                      : 'border-gray-300 hover:border-gray-400'}`}
+                >
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <span className="text-lg font-medium text-black">
+                        {size === '128GB' ? 'Рекомендуемый' : 
+                         size === '256GB' ? 'Популярный' : 'Максимальный'}
+                      </span>
+                      <p className="text-sm text-gray-500 mt-1">{size}</p>
                     </div>
-                  </button>
-                ))}
-              </div>
+                    <span className="text-sm text-gray-500">
+                      или {Math.round(price/24).toLocaleString()} ₸/мес.
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
           )}
 
